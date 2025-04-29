@@ -6,7 +6,9 @@ import axios from "axios";
 const router = express.Router();
 
 dotenv.config();
+
 const app = express();
+
 const { Pool } = pg;
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -15,6 +17,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   poer: process.env.DB_PORT,
 });
+
 app.use(express.json());
 
 app.listen(3000, () => {
