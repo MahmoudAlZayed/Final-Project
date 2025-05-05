@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../types";
+import { Product } from "../../types";
 import Button from "../ui/Button";
 import { CartContext } from "../../App";
 import "./ProductDetail.css";
@@ -11,10 +11,11 @@ const fetchProductById = async (id: number): Promise<Product> => {
     id,
     name: "Sample Product",
     price: 99.99,
-    description: "This is a sample product description. In a real app, this would be fetched from an API.",
+    description:
+      "This is a sample product description. In a real app, this would be fetched from an API.",
     category: "Electronics",
     imageUrl: "/images/product.jpg",
-    inStock: true
+    inStock: true,
   };
 };
 

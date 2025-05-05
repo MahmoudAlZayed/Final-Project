@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Product } from "../types";
+import { Product } from "../../types";
 import ProductCard from "./ProductCard";
 import { CartContext } from "../../App";
 import "./ProductGrid.css";
@@ -19,10 +19,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   return (
     <div className="product-grid">
       {products.map((product) => (
-        <ProductCard 
-          key={product.id} 
-          product={product} 
-          onAddToCart={addToCart} 
+        <ProductCard
+          key={product.id}
+          product={product}
+          onAddToCart={addToCart}
         />
       ))}
     </div>

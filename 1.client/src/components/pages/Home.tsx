@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ProductGrid from "../product/ProductGrid";
 import "./Home.css";
-import { Product } from "../types";
+import { Product } from "../../types";
 
 const Home: React.FC = () => {
   // Sample products data - this would normally come from an API
@@ -14,7 +14,7 @@ const Home: React.FC = () => {
       description: "Latest smartphone with advanced features",
       category: "Electronics",
       imageUrl: "/images/smartphone.jpg",
-      inStock: true
+      inStock: true,
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       description: "Premium wireless headphones with noise cancellation",
       category: "Electronics",
       imageUrl: "/images/headphones.jpg",
-      inStock: true
+      inStock: true,
     },
     {
       id: 3,
@@ -32,10 +32,10 @@ const Home: React.FC = () => {
       description: "Fitness tracker and smartwatch with health monitoring",
       category: "Electronics",
       imageUrl: "/images/smartwatch.jpg",
-      inStock: false
-    }
+      inStock: false,
+    },
   ];
-  
+
   const newArrivals: Product[] = [
     {
       id: 4,
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
       description: "Comfortable cotton t-shirt in various colors",
       category: "Clothing",
       imageUrl: "/images/tshirt.jpg",
-      inStock: true
+      inStock: true,
     },
     {
       id: 5,
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       description: "Modern desk lamp with adjustable brightness",
       category: "Home & Garden",
       imageUrl: "/images/lamp.jpg",
-      inStock: true
+      inStock: true,
     },
     {
       id: 6,
@@ -62,10 +62,10 @@ const Home: React.FC = () => {
       description: "Hydrating face cream for all skin types",
       category: "Beauty",
       imageUrl: "/images/facecream.jpg",
-      inStock: true
-    }
+      inStock: true,
+    },
   ];
-  
+
   // In a real application, you would fetch products from an API
   // useEffect(() => {
   //   const fetchProducts = async () => {

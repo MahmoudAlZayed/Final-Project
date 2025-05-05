@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Product } from "../types";
+import { Product } from "../../types";
 import Button from "../ui/Button";
 import "./ProductCard.css";
 

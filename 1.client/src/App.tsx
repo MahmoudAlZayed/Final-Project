@@ -4,7 +4,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./components/pages/Home";
 import ProductDetail from "./components/pages/ProductDetail";
-import { CartItem } from "./components/types";
+import { CartItem } from "./types";
 import "./App.css";
 
 // Cart context for managing cart state across components
@@ -26,7 +26,9 @@ export const CartContext = createContext<CartContextType>({
 });
 
 // Placeholder components for pages that might not exist yet
-const ProductList = () => <div className="page-container">Product List Page</div>;
+const ProductList = () => (
+  <div className="page-container">Product List Page</div>
+);
 const Cart = () => <div className="page-container">Cart Page</div>;
 
 const App: React.FC = () => {
@@ -34,13 +36,15 @@ const App: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const addToCart = (productId: number, quantity: number = 1) => {
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.productId === productId);
-      
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(
+        (item) => item.productId === productId
+      );
+
       if (existingItem) {
         // Update quantity if item already exists
-        return prevItems.map(item => 
-          item.productId === productId 
+        return prevItems.map((item) =>
+          item.productId === productId
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
@@ -52,8 +56,8 @@ const App: React.FC = () => {
   };
 
   const removeFromCart = (productId: number) => {
-    setCartItems(prevItems => 
-      prevItems.filter(item => item.productId !== productId)
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.productId !== productId)
     );
   };
 
@@ -66,7 +70,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, getCartTotal }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, clearCart, getCartTotal }}
+    >
       <Router>
         <div className="app-container">
           <Header />
