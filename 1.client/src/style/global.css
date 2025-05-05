@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import your custom CSS files */
+@import "./variables.css";
+@import "./utilities.css";
+
+/* Global styles */
+body {
+  @apply font-sans text-gray-800 bg-gray-50;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-medium;
+}
+
+a {
+  @apply text-blue-600 hover:text-blue-800;
+}
+
+/* Common layout styles */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.page-section {
+  @apply py-12;
+}

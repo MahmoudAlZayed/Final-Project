@@ -1,0 +1,56 @@
+.home-page {
+  @apply pb-12;
+}
+
+.hero-section {
+  @apply bg-gray-100 py-16 text-center;
+}
+
+.hero-container {
+  @apply container mx-auto px-4;
+}
+
+.hero-title {
+  @apply text-4xl font-bold text-gray-900 mb-4;
+}
+
+.hero-description {
+  @apply text-xl text-gray-600 max-w-2xl mx-auto mb-8;
+}
+
+.hero-button {
+  @apply inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold;
+  @apply hover:bg-blue-700 transition-colors;
+}
+
+.categories-section {
+  @apply container mx-auto px-4 py-12;
+}
+
+.categories-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+}
+
+.category-card {
+  @apply bg-white p-6 rounded-lg shadow-sm text-center;
+}
+
+.category-icon {
+  @apply w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4;
+}
+
+.category-title {
+  @apply text-lg font-medium;
+}
+
+.products-section {
+  @apply container mx-auto px-4 py-12;
+}
+
+.section-title {
+  @apply text-2xl font-bold text-center mb-8;
+}
+
+.loading-indicator {
+  @apply text-center py-8 text-gray-500;
+}

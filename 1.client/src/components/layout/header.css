@@ -1,0 +1,32 @@
+.header {
+  @apply sticky top-0 z-50 bg-white shadow-sm;
+}
+
+.header-container {
+  @apply container mx-auto px-4 py-4;
+}
+
+.header-content {
+  @apply flex items-center justify-between;
+}
+
+.header-logo {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.header-search {
+  @apply flex-grow mx-6;
+}
+
+.search-input {
+  @apply w-full px-4 py-2 border border-gray-200 rounded-md;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.header-nav {
+  @apply flex items-center space-x-6;
+}
+
+.nav-link {
+  @apply text-gray-600 hover:text-blue-600 font-medium;
+}
