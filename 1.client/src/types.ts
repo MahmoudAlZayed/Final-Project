@@ -21,3 +21,8 @@ export interface User {
   name: string;
   email: string;
 }
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
