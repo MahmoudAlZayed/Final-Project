@@ -1,0 +1,39 @@
+.modal-backdrop {
+  @apply fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50;
+}
+
+.modal {
+  @apply mr-10 bg-white p-8 shadow-lg w-full max-w-md min-h-[400px] z-10;
+}
+
+.modal-title {
+  @apply text-xl font-bold mb-4 text-black text-center;
+}
+
+.input-container {
+  @apply space-y-4;
+}
+
+.input {
+  @apply mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-300 text-black;
+}
+
+.button-container {
+  @apply flex justify-between;
+}
+
+.register-button {
+  @apply bg-gray-400 text-white py-2 rounded hover:bg-gray-500 transition;
+}
+
+.cancel-button {
+  @apply bg-gray-300 text-gray-800 py-2 px-4 rounded hover:bg-gray-400 transition;
+}
+
+.success-message{
+  @apply mt-10 text-green-600 text-center;
+}
+
+.register-link{
+  @apply ml-1 text-black underline hover:text-blue-800 cursor-pointer;
+}
