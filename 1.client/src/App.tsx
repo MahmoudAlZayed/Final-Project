@@ -8,14 +8,25 @@ import Login from "./components/pages/Login";
 import { CartItem } from "./types";
 import "./App.css";
 
+import { Product } from "./types";
+
 // Cart context for managing cart state across components
 
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (productId: number, quantity?: number) => void;
+
+  //Mahmoud:
+  addToCart: (product: Product) => void;
+  //Mahmoud
+
+  //Peter"
+
+  // addToCart: (productId: number, quantity?: number) => void;
   removeFromCart: (productId: number) => void;
   clearCart: () => void;
   getCartTotal: () => number;
+
+  //Peter
 }
 
 export const CartContext = createContext<CartContextType>({

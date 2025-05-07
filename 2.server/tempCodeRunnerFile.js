@@ -1,4 +1,3 @@
-//Mahmoud:
 import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
@@ -29,5 +28,3 @@ app.post("/api/login", (req, res) => {
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
-
-//Mahmoud
