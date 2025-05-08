@@ -1,25 +1,69 @@
+// Ida:
 import React, { useState } from "react";
 import "./login.css";
 import RegisterModal from "../registerModal/RegisterModal";
+//Ida
+
+//Mahmoud:
+import { useNavigate } from "react-router-dom";
+//Mahmoud
 
 const Login = () => {
+  //Ida
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
+  //Ida
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //Mahmoud:
+  const navigate = useNavigate();
+  //Mahmoud
+
+  //Ida
+
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   console.log("Username:", username);
+  //   console.log("Password:", password);
+
+  //   setUsername("");
+  //   setPassword("");
+  // };
+
+  //Ida
+
+  //Mahmoud:
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
+    try {
+      const response = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
-    setUsername("");
-    setPassword("");
+      if (!response.ok) throw new Error("Invalid credentials");
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+
+      navigate("/");
+    } catch (err) {
+      alert("Login failed: Invalid username or password");
+    } finally {
+      setUsername("");
+      setPassword("");
+    }
   };
 
+  //Mahmoud
+
+  //Ida:
   return (
     <div className="container">
       <div className="card">
         <h1 className="heading">Login</h1>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="label">Username</label>
@@ -61,3 +105,4 @@ const Login = () => {
 };
 
 export default Login;
+//Ida
