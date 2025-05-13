@@ -6,18 +6,13 @@ import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 
-import cors from "cors";
-
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express();
-const USERS_FILE = path.join(__dirname, "data/users.json");
-
-app.use(express.json());
-app.use(cors());
+const router = express.Router();
+const USERS_FILE = path.join(__dirname, "../data/users.json");
 
 const readUsers = async () => {
   try {
@@ -32,13 +27,14 @@ const writeUsers = async (users) => {
   await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2), "utf8");
 };
 
-app.post("/api/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { name, lastname, email, password } = req.body;
 
   if (!name || !lastname || !email || !password) {
     return res.status(400).json({ message: "Missing required fields" });
   }
 
+  // Password : minimum 6 characters
   if (password.length < 6) {
     return res
       .status(400)
@@ -66,13 +62,14 @@ app.post("/api/register", async (req, res) => {
     const token = jwt.sign({ email, role: "user" }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
+
     res.status(201).json({ token });
   } catch (err) {
     res.status(500).json({ message: "Registration failed", error: err });
   }
 });
 
-app.post("/api/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { username, email, password } = req.body;
 
   // Admin login
@@ -93,7 +90,10 @@ app.post("/api/login", async (req, res) => {
   // Customer login
   if (email && password) {
     try {
+      // Trim the email and password fields to prevent space-related issues
       const trimmedEmail = email.trim();
+      const trimmedPassword = password.trim();
+
       const users = await readUsers();
       const user = users.find((u) => u.email === trimmedEmail);
 
@@ -102,7 +102,7 @@ app.post("/api/login", async (req, res) => {
       }
 
       const isPasswordValid = await bcrypt.compare(
-        password.trim(),
+        trimmedPassword,
         user.password
       );
       if (!isPasswordValid) {
@@ -112,7 +112,9 @@ app.post("/api/login", async (req, res) => {
       const token = jwt.sign(
         { email: trimmedEmail, role: user.role },
         process.env.JWT_SECRET,
-        { expiresIn: "1h" }
+        {
+          expiresIn: "1h",
+        }
       );
 
       return res.status(200).json({ token });
@@ -124,6 +126,4 @@ app.post("/api/login", async (req, res) => {
   return res.status(400).json({ message: "Missing login fields" });
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
-});
+export default router;
