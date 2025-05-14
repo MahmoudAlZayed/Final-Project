@@ -2,40 +2,63 @@ import React, { useState, useEffect } from "react";
 import "./login.css";
 import RegisterModal from "../registerModal/RegisterModal";
 import { useNavigate } from "react-router-dom";
+import { fetchLogin } from "../../services/authService";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>(""); 
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [isAdminLogin, setIsAdminLogin] = useState<boolean>(false); 
+  const [isAdminLogin, setIsAdminLogin] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) setIsLoggedIn(true);
   }, []);
 
+  /*REPLACED! I will delete in my next branch if changes is ok - Ida*/
+
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/login", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(
+  //         isAdminLogin ? { username, password } : { email, password }
+  //       ),
+  //     });
+
+  //     if (!response.ok) throw new Error("Invalid credentials");
+
+  //     const data = await response.json();
+  //     localStorage.setItem("token", data.token);
+  //     setIsLoggedIn(true);
+
+  //     navigate("/");
+  //   } catch (err) {
+  //     alert("Login failed: Invalid email or password");
+  //   } finally {
+  //     setUsername("");
+  //     setEmail("");
+  //     setPassword("");
+  //   }
+  // };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const userData = isAdminLogin
+      ? { username, password }
+      : { email, password };
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(
-          isAdminLogin ? { username, password } : { email, password }
-        ),
-      });
-
-      if (!response.ok) throw new Error("Invalid credentials");
-
-      const data = await response.json();
+      const data = await fetchLogin(userData);
       localStorage.setItem("token", data.token);
       setIsLoggedIn(true);
-
       navigate("/");
-    } catch (err) {
+    } catch (error) {
       alert("Login failed: Invalid email or password");
     } finally {
       setUsername("");

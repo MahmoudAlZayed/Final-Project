@@ -21,10 +21,16 @@ export interface User {
   name: string;
   email: string;
 }
-
+// RegisterModal type definition
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+}
+// LoginForm type definition
+export interface LoginCredentials {
+  email?: string;
+  username?: string;
+  password?: string;
 }
 
 
