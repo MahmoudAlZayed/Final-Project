@@ -14,8 +14,8 @@ export default {
   createOrder: async (order) => {
     const { customer_id, total_price } = order;
     const result = await query(
-      'INSERT INTO orders (customer_id, total_price) VALUES ($1, $2) RETURNING *',
-      [customer_id, total_price]
+      'INSERT INTO orders (customer_id) VALUES ($1) RETURNING *',
+      [customer_id]
     );
     return result.rows[0];
   },
@@ -23,8 +23,8 @@ export default {
   updateOrder: async (id, order) => {
     const { customer_id, total_price } = order;
     const result = await query(
-      'UPDATE orders SET customer_id = $1, total_price = $2 WHERE id = $3 RETURNING *',
-      [customer_id, total_price, id]
+      'UPDATE orders SET customer_id = $1 WHERE id = $2 RETURNING *',
+      [customer_id, id]
     );
     return result.rows[0];
   },
