@@ -127,7 +127,7 @@ const Login = () => {
               </a>
             </p>
 
-            <p className="register-link-position">
+            {/* <p className="register-link-position">
               <a
                 onClick={(e) => {
                   e.preventDefault();
@@ -139,7 +139,7 @@ const Login = () => {
                   ? "Switch to Customer Login"
                   : "Switch to Admin Login"}
               </a>
-            </p>
+            </p> */}
           </form>
         )}
       </div>
