@@ -5,6 +5,7 @@ import Footer from "./components/layout/Footer";
 import Home from "./components/pages/Home";
 import ProductDetail from "./components/pages/ProductDetail";
 import Login from "./components/pages/Login";
+import AdminLogin from "./components/pages/AdminLogin";
 import { CartItem } from "./types";
 import "./App.css";
 
@@ -95,6 +96,7 @@ const App: React.FC = () => {
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/admin/login" element={<AdminLogin />} /> 
             </Routes>
           </main>
           <Footer />
