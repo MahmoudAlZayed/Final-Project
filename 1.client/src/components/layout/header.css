@@ -1,5 +1,5 @@
 .header {
-  @apply sticky top-0 z-50 bg-white shadow-sm;
+  @apply sticky top-0 z-50 bg-gray-100 shadow-lg font-rajd;
 }
 
 .header-container {
@@ -10,17 +10,16 @@
   @apply flex items-center justify-between;
 }
 
-.header-logo {
-  @apply text-2xl font-bold text-blue-600;
-}
-
 .header-search {
-  @apply flex-grow mx-6;
+  @apply flex items-center justify-center;
 }
 
+.logo{
+  @apply h-24;
+}
 .search-input {
-  @apply w-full px-4 py-2 border border-gray-200 rounded-md;
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply w-[400px] h-[35px] px-4 py-2 border border-gray-200 rounded-md bg-gray-200 text-black placeholder:text-sm;
+  @apply focus:outline-none focus:ring-2 focus:ring-gray-300;
 }
 
 .header-nav {
@@ -28,5 +27,5 @@
 }
 
 .nav-link {
-  @apply text-gray-600 hover:text-blue-600 font-medium;
+  @apply text-gray-600 hover:text-khaki font-medium;
 }

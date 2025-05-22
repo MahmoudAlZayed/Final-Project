@@ -146,9 +146,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductGrid from "../product/ProductGrid";
+import PictureGallery from "../layout/PictureGallery";
 import "./Home.css";
 import { Product } from "../../types";
 import { jwtDecode } from "jwt-decode";
+import OffersGallery from "../layout/OffersGallery";
 
 const Home: React.FC = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
@@ -162,6 +164,7 @@ const Home: React.FC = () => {
   const [newProductCategory, setNewProductCategory] = useState("Electronics");
   const [selectedProductList, setSelectedProductList] =
     useState("Featured Products");
+  const [isNewArrival, setIsNewArrival] = useState(false);
 
   const fetchProducts = async () => {
     const fetchedFeaturedProducts = [
@@ -310,7 +313,7 @@ const Home: React.FC = () => {
     <div className="home-page">
       <section className="hero-section">
         <div className="hero-container">
-          <h1 className="hero-title">Summer Collection 2025</h1>
+          <h1 className="hero-title">SUMMER COLLECTION 2025</h1>
           <p className="hero-description">
             Discover our latest products with amazing deals and discounts.
             Limited time offers available.
@@ -323,10 +326,80 @@ const Home: React.FC = () => {
 
       {isAdmin && (
         <section className="admin-panel">
-          <h2 className="section-title">Admin Panel</h2>
+          <h2 className="section-title">ADMIN PANEL</h2>
+          <p className="selection-description">
+            Add a new product to the store by filling out the form below.
+          </p>
+
+          <form className="selection-container">
+            <div className="first-column">
+              <input
+                className="input-field-admin"
+                type="text"
+                placeholder="Product Name"
+                value={newProductName}
+                onChange={(e) => setNewProductName(e.target.value)}
+              />
+              <input
+                className="input-field-admin"
+                type="number"
+                placeholder="Price"
+                value={newProductPrice}
+                onChange={(e) => setNewProductPrice(e.target.value)}
+              />
+              <textarea
+                className="text-field-admin"
+                placeholder="Description"
+                value={newProductDescription}
+                onChange={(e) => setNewProductDescription(e.target.value)}
+              />
+            </div>
+
+            <div className="second-column">
+              <select
+                className="select-category"
+                value={newProductCategory}
+                onChange={(e) => setNewProductCategory(e.target.value)}
+              >
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Home & Garden">Home & Garden</option>
+                <option value="Beauty">Beauty</option>
+              </select>
+              <select
+                className="select-product-list"
+                value={selectedProductList}
+                onChange={(e) => setSelectedProductList(e.target.value)}
+              >
+                <option value="Featured Products">Featured Products</option>
+                <option value="New Arrivals">New Arrivals</option>
+              </select>
+
+              <div className="flex justify-center items-center gap-2">
+                <input
+                  className="select-file"
+                  type="file"
+                  onChange={(e) =>
+                    setNewProductImage(e.target.files?.[0] || null)
+                  }
+                />
+                <label className="select-new-arrival">
+                  <input
+                    type="checkbox"
+                    checked={isNewArrival}
+                    onChange={(e) => setIsNewArrival(e.target.checked)}
+                  />
+                  New Arrival
+                </label>
+              </div>
+            </div>
+          </form>
           <div className="admin-buttons">
-            <button onClick={handleAddProduct}>Add Product</button>
+            <button className="add-product-button" onClick={handleAddProduct}>
+              Add Product
+            </button>
             <button
+              className="logout-button"
               onClick={() => {
                 localStorage.removeItem("token");
                 window.location.reload();
@@ -335,51 +408,26 @@ const Home: React.FC = () => {
               Logout
             </button>
           </div>
-
-          <form>
-            <input
-              type="text"
-              placeholder="Product Name"
-              value={newProductName}
-              onChange={(e) => setNewProductName(e.target.value)}
-            />
-            <input
-              type="number"
-              placeholder="Price"
-              value={newProductPrice}
-              onChange={(e) => setNewProductPrice(e.target.value)}
-            />
-            <textarea
-              placeholder="Description"
-              value={newProductDescription}
-              onChange={(e) => setNewProductDescription(e.target.value)}
-            />
-            <select
-              value={newProductCategory}
-              onChange={(e) => setNewProductCategory(e.target.value)}
-            >
-              <option value="Electronics">Electronics</option>
-              <option value="Clothing">Clothing</option>
-              <option value="Home & Garden">Home & Garden</option>
-              <option value="Beauty">Beauty</option>
-            </select>
-            <input
-              type="file"
-              onChange={(e) => setNewProductImage(e.target.files?.[0] || null)}
-            />
-            <select
-              value={selectedProductList}
-              onChange={(e) => setSelectedProductList(e.target.value)}
-            >
-              <option value="Featured Products">Featured Products</option>
-              <option value="New Arrivals">New Arrivals</option>
-            </select>
-          </form>
         </section>
       )}
 
       <section className="products-section">
-        <h2 className="section-title">Featured Products</h2>
+        <h2 className="section-title">NEW ARRIVALS</h2>
+        <ProductGrid
+          products={newArrivals}
+          handleDeleteProduct={(id) => handleDeleteProduct(id, false)}
+          handleImageChange={(id, e) => handleImageChange(id, e, false)}
+          handlePriceChange={(id, price) => handlePriceChange(id, price, false)}
+          isAdmin={isAdmin}
+        />
+      </section>
+
+      <section>
+        <PictureGallery />
+      </section>
+
+      <section className="products-section">
+        <h2 className="section-title">FEATURED PRODUCTS</h2>
         <ProductGrid
           products={featuredProducts}
           handleDeleteProduct={(id) => handleDeleteProduct(id, true)}
@@ -389,15 +437,8 @@ const Home: React.FC = () => {
         />
       </section>
 
-      <section className="products-section">
-        <h2 className="section-title">New Arrivals</h2>
-        <ProductGrid
-          products={newArrivals}
-          handleDeleteProduct={(id) => handleDeleteProduct(id, false)}
-          handleImageChange={(id, e) => handleImageChange(id, e, false)}
-          handlePriceChange={(id, price) => handlePriceChange(id, price, false)}
-          isAdmin={isAdmin}
-        />
+      <section>
+        <OffersGallery />
       </section>
     </div>
   );

@@ -1,5 +1,5 @@
 .product-card {
-  @apply bg-white rounded-lg overflow-hidden shadow-sm;
+  @apply bg-white rounded-lg overflow-hidden shadow-lg p-6;
   @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
 }
 
@@ -8,7 +8,7 @@
 }
 
 .product-image-container {
-  @apply h-48 bg-gray-100 flex items-center justify-center relative;
+  @apply h-72 bg-gray-100 flex items-center justify-center relative;
 }
 
 .out-of-stock-badge {
@@ -28,13 +28,28 @@
 }
 
 .product-title {
-  @apply text-lg font-medium mb-2 text-gray-800;
+  @apply text-lg font-medium mb-2 text-gray-800 font-rajd;
+}
+
+.product-description {
+  @apply text-gray-800 mt-2 font-rajd h-[50px];
 }
 
 .product-price {
-  @apply text-blue-600 font-bold mb-3;
+  @apply text-xl font-bold text-gray-800 mt-4 font-rajd;
 }
 
-.product-add-button {
-  @apply w-full;
+.add-to-cart-button {
+  @apply bg-black text-white px-4 py-2 rounded-md w-full mt-4 hover:bg-customGreen transition-colors duration-300 font-rajd;
+}
+
+/*ADMIN*/
+
+.admin-input,
+.admin-input-file {
+  @apply border p-2 rounded w-full mb-2;
+}
+
+.delete-button {
+  @apply bg-red-500 text-white px-4 py-2 rounded-md mt-2;
 }

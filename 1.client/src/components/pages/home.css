@@ -3,24 +3,28 @@
 }
 
 .hero-section {
-  @apply bg-gray-100 py-16 text-center;
+  @apply bg-gray-100 py-16 text-center bg-cover bg-top bg-no-repeat h-[500px] flex items-center justify-center;
+  background-image: url("/women4.jpg");
 }
 
 .hero-container {
-  @apply container mx-auto px-4;
+  @apply container mx-auto px-4 bg-white bg-opacity-60 shadow-lg p-8 max-w-2xl;
 }
 
 .hero-title {
-  @apply text-4xl font-bold text-gray-900 mb-4;
+  @apply text-4xl font-bold text-gray-900 mb-4 font-rajd;
+  font-weight: 400;
 }
 
 .hero-description {
-  @apply text-xl text-gray-600 max-w-2xl mx-auto mb-8;
+  @apply text-xl text-gray-800 max-w-xl mx-auto mb-8 font-rajd;
+  font-weight: 400;
 }
 
 .hero-button {
-  @apply inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold;
-  @apply hover:bg-blue-700 transition-colors;
+  @apply inline-block bg-gray-100 text-black rounded-sm px-4 py-2 font-rajd;
+  @apply hover:bg-gray-200 transition-colors;
+  font-weight: 400;
 }
 
 .categories-section {
@@ -48,10 +52,62 @@
 }
 
 .section-title {
-  @apply text-2xl font-bold text-center mb-8;
+  @apply text-2xl text-center mb-8 text-black font-rajd;
+  font-weight: 500;
 }
 
 .loading-indicator {
   @apply text-center py-8 text-gray-500;
 }
 
+/*ADMIN*/
+
+.admin-panel {
+  @apply container mx-auto px-4 py-12 text-black bg-gray-50 mt-2;
+}
+
+.selection-description {
+  @apply text-center text-gray-600 mb-8;
+}
+
+.selection-container {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-2 items-center max-w-[900px] flex justify-center mx-auto;
+}
+
+.first-column {
+  @apply flex flex-col space-y-4;
+}
+
+.second-column {
+  @apply flex flex-col space-y-4 mb-4;
+}
+
+.input-field-admin {
+  @apply w-96 px-4 py-2 border border-gray-200 rounded-md mb-4 placeholder-white text-white mx-auto;
+  height: 30%;
+}
+
+.text-field-admin {
+  @apply w-96 px-4 py-2 border border-gray-200 rounded-md mb-4 placeholder-white text-white mx-auto;
+  height: 50%;
+}
+
+.select-category,
+.select-product-list {
+  @apply w-96 px-4 py-2 border border-gray-200 rounded-md mb-4 text-white mx-auto;
+}
+
+.select-file,
+.select-new-arrival {
+  @apply w-52 px-4 py-2 ml-4 mx-auto;
+}
+
+.admin-buttons {
+  @apply flex justify-center space-x-4 mt-8;
+}
+
+.add-product-button,
+.logout-button {
+  @apply bg-gray-100 text-black rounded-sm px-4 py-2 border border-gray-300;
+  @apply hover:bg-gray-200 transition-colors;
+}
