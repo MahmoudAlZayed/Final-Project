@@ -1,0 +1,33 @@
+.offers-container {
+  @apply flex justify-center mx-auto p-4;
+}
+
+.offers-sale-box {
+  @apply flex gap-3 cursor-pointer;
+}
+
+.offers-sale-text-box {
+  @apply w-[350px] h-[350px] bg-khaki text-white flex flex-col items-center justify-center text-center rounded-md;
+  @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+}
+
+.offers-procent-text {
+  @apply text-3xl font-bold font-rajd;
+}
+
+.offers-sale-text {
+  @apply text-lg font-semibold font-rajd;
+}
+
+.offers-student-discount-box {
+  @apply w-[350px] h-[350px] bg-cover text-white flex items-center justify-center relative rounded-md font-rajd;
+  @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+}
+
+.offers-student-discount-text-box {
+  @apply bg-black/50 p-2 rounded;
+}
+
+.offers-student-discount-text {
+  @apply text-7xl font-semibold font-rajd;
+}

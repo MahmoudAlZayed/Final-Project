@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../App";
 import "./header.css";
+import logo from "/public/logo_webshop.png";
 
 const Header = () => {
   const { getCartTotal } = useContext(CartContext);
@@ -12,8 +13,8 @@ const Header = () => {
       <div className="header">
         <div className="header-container">
           <div className="header-content">
-            <Link to="/" className="header-logo">
-              Shopease
+            <Link to="/">
+              <img src={logo} alt="logo" className="logo" />
             </Link>
             <div className="header-search">
               <input
@@ -21,6 +22,7 @@ const Header = () => {
                 placeholder="Search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
               />
             </div>
             <nav className="header-nav">

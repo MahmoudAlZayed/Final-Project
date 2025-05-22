@@ -40,6 +40,8 @@
 import React, { useContext } from "react";
 import { Product } from "../../types";
 import { CartContext } from "../../App";
+import "./ProductGrid.css";
+import "./productcard.css";
 
 interface ProductGridProps {
   products: Product[];
@@ -66,30 +68,34 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   }
 
   return (
-    <div className="product-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="product-grid">
       {products.map((product) => (
         <div
           key={product.id}
-          className="product-card bg-white p-6 rounded-lg shadow-lg"
+          className="product-card"
         >
+          <div className="product-image-container">
           <img
             src={product.imageUrl}
             alt={product.name}
-            className="w-full h-64 object-cover rounded-lg mb-4"
+            className="product-image"
           />
-          <h3 className="text-xl font-semibold text-gray-900">
+          </div>
+          <div className="product-info">
+          <h3 className="product-title">
             {product.name}
           </h3>
-          <p className="text-gray-600 mt-2">{product.description}</p>
-          <p className="text-xl font-bold text-gray-800 mt-4">
+          <p className="product-description">{product.description}</p>
+          <p className="product-price">
             ${product.price.toFixed(2)}
           </p>
+          </div>
 
           {/* Add to cart*/}
           {!isAdmin && (
             <button
               onClick={() => addToCart(product)}
-              className="bg-green-600 text-white px-4 py-2 rounded-md w-full mt-4"
+              className="add-to-cart-button"
             >
               Add to Cart
             </button>
@@ -97,23 +103,23 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
           {/* Admin */}
           {isAdmin && (
-            <div className="admin-controls mt-4">
+            <div className="mt-4">
               <input
                 type="number"
                 value={product.price}
                 onChange={(e) =>
                   handlePriceChange(product.id, parseFloat(e.target.value))
                 }
-                className="border p-2 rounded w-full mb-2"
+                className="admin-input"
               />
               <input
                 type="file"
                 onChange={(e) => handleImageChange(product.id, e)}
-                className="border p-2 rounded w-full mb-2"
+                className="admin-input-file"
               />
               <button
                 onClick={() => handleDeleteProduct(product.id)}
-                className="bg-red-600 text-white px-4 py-2 rounded-md w-full"
+                className="delete-button"
               >
                 Delete Product
               </button>

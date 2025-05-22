@@ -1,0 +1,15 @@
+.gallery-container {
+  @apply flex gap-2 mx-auto p-7;
+}
+
+.gallery-img {
+  @apply flex-1 h-[500px] bg-cover bg-[center_30%] rounded-md relative;
+}
+
+.gallery-overlay {
+  @apply absolute w-[400px] h-[200px] bg-white/70 flex items-center justify-center shadow-md left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+.gallery-text {
+  @apply text-center text-black text-2xl font-semibold px-4 cursor-pointer font-rajd hover:text-gray-700;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchLogin } from "../../services/authService";
+import "./login.css";
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
@@ -21,13 +22,14 @@ const AdminLogin = () => {
   return (
     <div className="container">
       <div className="card">
-        <h1>Admin Login</h1>
-        <form onSubmit={handleSubmit}>
+        <h1 className="heading">Admin Login</h1>
+        <form onSubmit={handleSubmit} className="form-group">
           <input
             type="text"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className="login-input"
             required
           />
           <input
@@ -35,9 +37,12 @@ const AdminLogin = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="login-input"
             required
           />
-          <button type="submit">Login as Admin</button>
+          <button className="sign-in-button" type="submit">
+            Login as Admin
+          </button>
         </form>
       </div>
     </div>

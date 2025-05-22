@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="copyright">
-          &copy; {new Date().getFullYear()} ShopEase. All rights reserved.
+          &copy; {new Date().getFullYear()} Everyday Fits. All rights reserved.
         </div>
       </div>
     </footer>

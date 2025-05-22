@@ -1,5 +1,5 @@
 .footer {
-  @apply bg-gray-800 text-white py-12;
+  @apply bg-gray-100 text-white py-12 font-rajd;
 }
 
 .footer-container {
@@ -15,7 +15,7 @@
 }
 
 .footer-heading {
-  @apply text-lg font-medium mb-4 text-gray-200;
+  @apply text-lg font-medium mb-4 text-gray-500;
 }
 
 .footer-list {
@@ -31,5 +31,5 @@
 }
 
 .copyright {
-  @apply text-center text-gray-400 pt-8 border-t border-gray-700;
+  @apply text-center text-gray-400 pt-8 border-t border-gray-300;
 }

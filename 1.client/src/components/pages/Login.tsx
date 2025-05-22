@@ -19,35 +19,6 @@ const Login = () => {
     if (token) setIsLoggedIn(true);
   }, []);
 
-  /*REPLACED! I will delete in my next branch if changes is ok - Ida*/
-
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await fetch("http://localhost:5000/api/login", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(
-  //         isAdminLogin ? { username, password } : { email, password }
-  //       ),
-  //     });
-
-  //     if (!response.ok) throw new Error("Invalid credentials");
-
-  //     const data = await response.json();
-  //     localStorage.setItem("token", data.token);
-  //     setIsLoggedIn(true);
-
-  //     navigate("/");
-  //   } catch (err) {
-  //     alert("Login failed: Invalid email or password");
-  //   } finally {
-  //     setUsername("");
-  //     setEmail("");
-  //     setPassword("");
-  //   }
-  // };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const userData = isAdminLogin
@@ -89,9 +60,10 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="label">
-                {isAdminLogin ? "Username" : "Email"}
+                {isAdminLogin ? "Username:" : "Email*"}
               </label>
               <input
+                placeholder="Enter your email"
                 type={isAdminLogin ? "text" : "email"}
                 value={isAdminLogin ? username : email}
                 onChange={(e) =>
@@ -99,16 +71,17 @@ const Login = () => {
                     ? setUsername(e.target.value)
                     : setEmail(e.target.value)
                 }
-                className="input"
+                className="login-input"
               />
             </div>
             <div>
-              <label className="label">Password</label>
+              <label className="label">Password*</label>
               <input
+                placeholder="Enter your password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input"
+                className="login-input"
               />
             </div>
             <button type="submit" className="sign-in-button">
@@ -126,20 +99,6 @@ const Login = () => {
                 Create new account
               </a>
             </p>
-
-            {/* <p className="register-link-position">
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsAdminLogin((prev) => !prev);
-                }}
-                className="register-link"
-              >
-                {isAdminLogin
-                  ? "Switch to Customer Login"
-                  : "Switch to Admin Login"}
-              </a>
-            </p> */}
           </form>
         )}
       </div>
