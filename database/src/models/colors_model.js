@@ -1,15 +1,16 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/db.js';
 
-const Category = sequelize.define('Category', {
+const Color = sequelize.define('Color', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  categoryName: { type: DataTypes.STRING, allowNull: false },
+  color: { type: DataTypes.STRING, allowNull: false },
 }, {
-  timestamps: true,
+  timestamps: false,
+  tableName: "colors",
 });
 
-export default Category;
+export default Color;
