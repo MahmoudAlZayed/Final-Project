@@ -1,9 +1,9 @@
-.container {
-  @apply flex flex-col items-center justify-center h-screen;
+.login-container {
+  @apply flex flex-col items-center justify-center h-screen w-full;
 }
 
-.card {
-  @apply bg-white p-8 shadow-lg w-full max-w-sm min-h-[500px];
+.login-card {
+  @apply bg-white p-8 shadow-lg w-full max-w-sm mx-auto;
 }
 
 .heading {

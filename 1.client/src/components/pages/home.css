@@ -2,62 +2,98 @@
   @apply pb-12;
 }
 
+/* Hero section responsive adjustments */
 .hero-section {
-  @apply bg-gray-100 py-16 text-center bg-cover bg-top bg-no-repeat h-[500px] flex items-center justify-center;
+  @apply bg-gray-100 py-8 sm:py-12 md:py-16 text-center bg-cover bg-top bg-no-repeat min-h-[300px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center;
   background-image: url("/women4.jpg");
 }
 
 .hero-container {
-  @apply container mx-auto px-4 bg-white bg-opacity-60 shadow-lg p-8 max-w-2xl;
+  @apply container mx-auto px-4 bg-white bg-opacity-60 shadow-lg p-4 sm:p-6 md:p-8 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl;
 }
 
 .hero-title {
-  @apply text-4xl font-bold text-gray-900 mb-4 font-rajd;
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-4 font-rajd;
   font-weight: 400;
 }
 
 .hero-description {
-  @apply text-xl text-gray-800 max-w-xl mx-auto mb-8 font-rajd;
+  @apply text-base sm:text-lg md:text-xl text-gray-800 max-w-xl mx-auto mb-4 sm:mb-6 md:mb-8 font-rajd;
   font-weight: 400;
 }
 
 .hero-button {
-  @apply inline-block bg-gray-100 text-black rounded-sm px-4 py-2 font-rajd;
+  @apply inline-block bg-gray-100 text-black rounded-sm px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-rajd;
   @apply hover:bg-gray-200 transition-colors;
   font-weight: 400;
 }
 
+/* Categories section responsive adjustments */
 .categories-section {
-  @apply container mx-auto px-4 py-12;
+  @apply container mx-auto px-4 py-6 sm:py-8 md:py-12;
 }
 
 .categories-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6;
 }
 
 .category-card {
-  @apply bg-white p-6 rounded-lg shadow-sm text-center;
+  @apply bg-white p-4 sm:p-6 rounded-lg shadow-sm text-center;
 }
 
 .category-icon {
-  @apply w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4;
+  @apply w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4;
 }
 
 .category-title {
-  @apply text-lg font-medium;
+  @apply text-base sm:text-lg font-medium;
 }
 
+/* Products section responsive adjustments */
 .products-section {
-  @apply container mx-auto px-4 py-12;
+  @apply container mx-auto px-4 py-6 sm:py-8 md:py-12;
+}
+
+.products-section .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Adjust for very small screens */
+@media (min-width: 322px) and (max-width: 639px) {
+  .products-section .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* Adjust for medium screens */
+@media (min-width: 640px) and (max-width: 767px) {
+  .products-section .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Adjust for larger screens */
+@media (min-width: 768px) {
+  .products-section .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    gap: 2rem;
+  }
 }
 
 .section-title {
-  @apply text-2xl text-center mb-8 text-black font-rajd;
+  @apply text-xl sm:text-2xl text-center mb-4 sm:mb-6 md:mb-8 text-black font-rajd;
   font-weight: 500;
 }
 
 .loading-indicator {
-  @apply text-center py-8 text-gray-500;
+  @apply text-center py-4 sm:py-6 md:py-8 text-gray-500;
 }
 
 /*ADMIN*/

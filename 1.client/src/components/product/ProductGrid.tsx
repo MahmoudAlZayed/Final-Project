@@ -1,42 +1,3 @@
-//Peter:
-
-// import React, { useContext } from "react";
-// import { Product } from "../../types";
-// import ProductCard from "./ProductCard";
-// import { CartContext } from "../../App";
-// import "./ProductGrid.css";
-
-// interface ProductGridProps {
-//   products: Product[];
-// }
-
-// const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
-//   // Get addToCart function from cart context
-//   const { addToCart } = useContext(CartContext);
-
-//   if (!products || products.length === 0) {
-//     return <div className="no-products">No products found</div>;
-//   }
-
-//   return (
-//     <div className="product-grid">
-//       {products.map((product) => (
-//         <ProductCard
-//           key={product.id}
-//           product={product}
-//           onAddToCart={addToCart}
-//         />
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default ProductGrid;
-
-//Peter
-
-//Mahmoud :
-
 import React, { useContext } from "react";
 import { Product } from "../../types";
 import { CartContext } from "../../App";
@@ -70,25 +31,18 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   return (
     <div className="product-grid">
       {products.map((product) => (
-        <div
-          key={product.id}
-          className="product-card"
-        >
+        <div key={product.id} className="product-card">
           <div className="product-image-container">
-          <img
-            src={product.imageUrl}
-            alt={product.name}
-            className="product-image"
-          />
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className="product-image"
+            />
           </div>
           <div className="product-info">
-          <h3 className="product-title">
-            {product.name}
-          </h3>
-          <p className="product-description">{product.description}</p>
-          <p className="product-price">
-            ${product.price.toFixed(2)}
-          </p>
+            <h3 className="product-title">{product.name}</h3>
+            <p className="product-description">{product.description}</p>
+            <p className="product-price">${product.price.toFixed(2)}</p>
           </div>
 
           {/* Add to cart*/}

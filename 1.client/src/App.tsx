@@ -6,6 +6,9 @@ import Home from "./components/pages/Home";
 import ProductDetail from "./components/pages/ProductDetail";
 import Login from "./components/pages/Login";
 import AdminLogin from "./components/pages/AdminLogin";
+import Women from "./components/pages/Women";
+import Men from "./components/pages/Men";
+import Kids from "./components/pages/Kids";
 import { CartItem } from "./types";
 import "./App.css";
 
@@ -48,22 +51,22 @@ const App: React.FC = () => {
   // Cart state management
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (productId: number, quantity: number = 1) => {
+  const addToCart = (product: Product, quantity: number = 1) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find(
-        (item) => item.productId === productId
+        (item) => item.productId === product.id
       );
 
       if (existingItem) {
         // Update quantity if item already exists
         return prevItems.map((item) =>
-          item.productId === productId
+          item.productId === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
         // Add new item
-        return [...prevItems, { productId, quantity }];
+        return [...prevItems, { productId: product.id, quantity }];
       }
     });
   };
@@ -96,7 +99,10 @@ const App: React.FC = () => {
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/admin/login" element={<AdminLogin />} /> 
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/women" element={<Women />} />
+              <Route path="/men" element={<Men />} />
+              <Route path="/kids" element={<Kids />} />
             </Routes>
           </main>
           <Footer />

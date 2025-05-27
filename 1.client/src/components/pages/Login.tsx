@@ -46,8 +46,8 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="login-container">
+      <div className="login-card">
         <h1 className="heading">Login</h1>
         {isLoggedIn ? (
           <div>
