@@ -10,10 +10,11 @@ const start = async () => {
   try {
     await sequelize.authenticate();
     await syncModels();
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    app.listen(PORT, () => console.log(`Database server running on port ${PORT}`));
   } catch (err) {
-    console.error("Veritabanı bağlantı hatası:", err);
+    console.error("Unable to connect to database:", err);
   }
 };
 
 start();
+

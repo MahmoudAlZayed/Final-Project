@@ -5,8 +5,10 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
-
 import cors from "cors";
+import Colors from "../database/src/models/colors_model.js";
+
+const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
@@ -18,6 +20,7 @@ const USERS_FILE = path.join(__dirname, "data/users.json");
 
 app.use(express.json());
 app.use(cors());
+
 
 const readUsers = async () => {
   try {
@@ -31,6 +34,18 @@ const readUsers = async () => {
 const writeUsers = async (users) => {
   await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2), "utf8");
 };
+
+// 
+app.get('/', async (req, res) => {
+  try {
+    const categories = await Colors.findAll()
+    res.json(categories);
+    
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+// 
 
 app.post("/api/register", async (req, res) => {
   const { name, lastname, email, password } = req.body;
