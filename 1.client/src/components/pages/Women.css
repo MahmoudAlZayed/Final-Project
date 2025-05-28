@@ -1,0 +1,74 @@
+.category-page {
+  @apply pb-12;
+}
+
+/* Hero section */
+.category-hero {
+  @apply bg-gray-100 py-8 sm:py-12 md:py-16 text-center bg-cover bg-top bg-no-repeat min-h-[200px] sm:min-h-[250px] md:min-h-[300px] flex items-center justify-center;
+  background-image: url("/women-banner.jpg");
+  background-color: #f8f4f0;
+}
+
+.category-hero-container {
+  @apply container mx-auto px-4 bg-white bg-opacity-70 shadow-lg p-4 sm:p-6 md:p-8 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl;
+}
+
+.category-title {
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-4 font-rajd;
+  font-weight: 400;
+}
+
+.category-description {
+  @apply text-base sm:text-lg md:text-xl text-gray-800 max-w-xl mx-auto mb-4 sm:mb-6 md:mb-8 font-rajd;
+  font-weight: 400;
+}
+
+/* Filters section */
+.category-filters {
+  @apply container mx-auto px-4 py-6 sm:py-8 border-b border-gray-200;
+}
+
+.filter-container {
+  @apply max-w-6xl mx-auto;
+}
+
+.filter-title {
+  @apply text-lg font-medium text-gray-800 mb-4;
+}
+
+.filter-options {
+  @apply flex flex-wrap gap-2 sm:gap-4;
+}
+
+.filter-button {
+  @apply px-3 sm:px-4 py-1 sm:py-2 bg-gray-100 text-gray-700 rounded-md text-sm sm:text-base hover:bg-gray-200 transition-colors;
+}
+
+.filter-button.active {
+  @apply bg-gray-700 text-white;
+}
+
+/* Products section */
+.products-section {
+  @apply container mx-auto px-4 py-6 sm:py-8 md:py-12;
+}
+
+.section-title {
+  @apply text-xl sm:text-2xl text-center mb-4 sm:mb-6 md:mb-8 text-black font-rajd;
+  font-weight: 500;
+}
+
+.loading-indicator {
+  @apply text-center py-4 sm:py-6 md:py-8 text-gray-500;
+}
+
+/* Responsive adjustments */
+@media (min-width: 322px) and (max-width: 639px) {
+  .filter-options {
+    @apply justify-center;
+  }
+
+  .filter-button {
+    @apply text-xs px-2 py-1;
+  }
+}
