@@ -1,5 +1,6 @@
 import React from "react";
 import "../layout/offersGallery.css";
+import { abstract } from "../../assets/images";
 
 const OffersGallery = () => {
   const offersTexts = [
@@ -19,7 +20,7 @@ const OffersGallery = () => {
         <div
           className="offers-student-discount-box"
           style={{
-            backgroundImage: `url("/abstract.jpg")`,
+            backgroundImage: `url(${abstract})`,
           }}
         >
           <div className="offers-student-discount-text-box">

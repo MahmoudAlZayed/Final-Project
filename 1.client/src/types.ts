@@ -1,4 +1,4 @@
-// Product type definition
+/*-----  Product type definition -----*/
 export interface Product {
   id: number;
   name: string;
@@ -7,30 +7,34 @@ export interface Product {
   category: string;
   imageUrl?: string;
   inStock: boolean;
+  gender?: string;
+  size?: string;
+  color?: string;
 }
 
-// Cart item type definition
+/*----- Cart item type definition -----*/
 export interface CartItem {
   productId: number;
   quantity: number;
 }
 
-// User type definition
+/*----- User type definition -----*/
+
 export interface User {
   id: number;
   name: string;
   email: string;
 }
-// RegisterModal type definition
+/*----- RegisterModal type definition -----*/
+
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-// LoginForm type definition
+/*----- LoginForm type definition -----*/
+
 export interface LoginCredentials {
   email?: string;
   username?: string;
   password?: string;
 }
-
-
