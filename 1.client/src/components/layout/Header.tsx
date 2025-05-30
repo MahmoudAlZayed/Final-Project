@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../App";
 import "./header.css";
-import logo from "/public/logo_webshop.png";
+import { logo } from "../../assets/images";
 import { FaShoppingCart, FaUser, FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
