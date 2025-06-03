@@ -1,31 +1,32 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../../types";
+import { ProductType } from "../../types";
 import Button from "../ui/Button";
-import { CartContext } from "../../App";
+import { useCart } from "../../context/CartContext";
 import "./ProductDetail.css";
 
-// Temporary mock function until API service is implemented
-const fetchProductById = async (id: number): Promise<Product> => {
+/*----- Temporary mock function until API service is implemented -----*/
+const fetchProductById = async (id: number): Promise<ProductType> => {
   return {
     id,
-    name: "Sample Product",
+    product_name: "Sample Product",
     price: 99.99,
-    description:
+    product_details:
       "This is a sample product description. In a real app, this would be fetched from an API.",
-    category: "Electronics",
-    imageUrl: "/images/product.jpg",
-    inStock: true,
+    category_id: 1,
+    subcategory_id: 1,
+    img_url: "/images/product.jpg",
+    list_type: "featured",
   };
 };
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<ProductType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useContext(CartContext);
+  const { addItem } = useCart();
 
   useEffect(() => {
     const loadProduct = async () => {
@@ -48,7 +49,7 @@ const ProductDetail: React.FC = () => {
 
   const handleAddToCart = () => {
     if (product) {
-      addToCart(product.id, quantity);
+      addItem(product);
     }
   };
 
@@ -69,10 +70,10 @@ const ProductDetail: React.FC = () => {
       <div className="product-detail-container">
         <div className="product-detail-grid">
           <div className="product-detail-image-container">
-            {product.imageUrl ? (
+            {product.img_url ? (
               <img
-                src={product.imageUrl}
-                alt={product.name}
+                src={product.img_url}
+                alt={product.product_name}
                 className="product-detail-image"
               />
             ) : (
@@ -83,13 +84,13 @@ const ProductDetail: React.FC = () => {
           </div>
 
           <div className="product-detail-info">
-            <h1 className="product-detail-title">{product.name}</h1>
+            <h1 className="product-detail-title">{product.product_name}</h1>
             <div className="product-detail-price">
               ${product.price.toFixed(2)}
             </div>
 
             <div className="product-detail-description">
-              {product.description}
+              {product.product_details}
             </div>
 
             <div className="product-detail-actions">
@@ -114,21 +115,19 @@ const ProductDetail: React.FC = () => {
               <Button
                 onClick={handleAddToCart}
                 className="product-detail-add-button"
-                disabled={!product.inStock}
               >
-                {product.inStock ? "Add to Cart" : "Out of Stock"}
+                Add to Cart
               </Button>
             </div>
 
             <div className="product-detail-meta">
               <div className="product-detail-category">
-                <span className="meta-label">Category:</span> {product.category}
+                <span className="meta-label">Category ID:</span>{" "}
+                {product.category_id}
               </div>
               <div className="product-detail-stock">
                 <span className="meta-label">Availability:</span>
-                <span className={product.inStock ? "in-stock" : "out-of-stock"}>
-                  {product.inStock ? "In Stock" : "Out of Stock"}
-                </span>
+                <span className="in-stock">In Stock</span>
               </div>
             </div>
           </div>

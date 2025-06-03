@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Product } from "../../types";
+import React, { useState, useEffect } from "react";
+import { ProductType } from "../../types";
 import ProductGrid from "../product/ProductGrid";
 import "./Men.css";
-import { CartContext } from "../../App";
 import { jwtDecode } from "jwt-decode";
+import { fetchProductTypes } from "../../services/productTypeService";
 
 const Men: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -30,70 +30,21 @@ const Men: React.FC = () => {
 
   const fetchMenProducts = async () => {
     setIsLoading(true);
+    try {
+      /*----- Fetch all products from the service -----*/
+      const allProducts = await fetchProductTypes();
 
-    /* In a real app, this would be an API call */
+      /*----- Filter for men's products (category_id: 1) -----*/
+      const menProducts = allProducts.filter(
+        (product: ProductType) => product.category_id === 1
+      );
 
-    /* For now, we'll use sample data */
-
-    const menProducts: Product[] = [
-      {
-        id: 201,
-        name: "Men's Casual Shirt",
-        price: 49.99,
-        description: "Comfortable button-up shirt for casual wear",
-        category: "Men",
-        imageUrl: "/images/mens-shirt.jpg",
-        inStock: true,
-      },
-      {
-        id: 202,
-        name: "Men's Jeans",
-        price: 59.99,
-        description: "Classic straight fit jeans for everyday wear",
-        category: "Men",
-        imageUrl: "/images/mens-jeans.jpg",
-        inStock: true,
-      },
-      {
-        id: 203,
-        name: "Men's Polo Shirt",
-        price: 34.99,
-        description: "Classic polo shirt with breathable fabric",
-        category: "Men",
-        imageUrl: "/images/mens-polo.jpg",
-        inStock: true,
-      },
-      {
-        id: 204,
-        name: "Men's Sweater",
-        price: 54.99,
-        description: "Warm knit sweater for colder days",
-        category: "Men",
-        imageUrl: "/images/mens-sweater.jpg",
-        inStock: false,
-      },
-      {
-        id: 205,
-        name: "Men's T-Shirt",
-        price: 24.99,
-        description: "Soft cotton t-shirt with modern design",
-        category: "Men",
-        imageUrl: "/images/mens-tshirt.jpg",
-        inStock: true,
-      },
-      {
-        id: 206,
-        name: "Men's Jacket",
-        price: 89.99,
-        description: "Stylish jacket for cooler weather",
-        category: "Men",
-        imageUrl: "/images/mens-jacket.jpg",
-        inStock: true,
-      },
-    ];
-
-    setProducts(menProducts);
-    setIsLoading(false);
+      setProducts(menProducts);
+    } catch (error) {
+      console.error("Error fetching men's products:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleDeleteProduct = (id: number) => {

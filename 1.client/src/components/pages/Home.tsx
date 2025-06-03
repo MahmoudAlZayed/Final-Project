@@ -10,7 +10,11 @@ import { productImages } from "../../assets/images";
 
 // Mock
 import { fetchCategory } from "../../services/categoryService";
-import { fetchProductTypes, fetchCreateProductType, fetchDeleteProductType } from "../../services/productTypeService";
+import {
+  fetchProductTypes,
+  fetchCreateProductType,
+  fetchDeleteProductType,
+} from "../../services/productTypeService";
 
 const Home: React.FC = () => {
   const [featuredProducts, setFeaturedProducts] = useState<ProductType[]>([]);
@@ -26,29 +30,55 @@ const Home: React.FC = () => {
     useState("Featured Products");
   const [isNewArrival, setIsNewArrival] = useState(false);
 
-
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
-  const loadData = async () => {
-    const productData = await fetchProductTypes();
-    console.log("Fetched products:", productData);
+    const loadData = async () => {
+      const productData = await fetchProductTypes();
+      console.log("Fetched products:", productData);
 
-    setProducts(productData);
+      setProducts(productData);
 
-    setNewArrivals(productData.filter((p: ProductType) => p.list_type === "new-arrival"));
-    setFeaturedProducts(productData.filter((p: ProductType) => p.list_type === "featured"));
+      /*----- Get all products with list_type "new-arrival" or if we have fewer than 4, add some featured products to make it 4 -----*/
+      const newArrivalProducts = productData.filter(
+        (p: ProductType) => p.list_type === "new-arrival"
+      );
 
-    const categoryData = await fetchCategory();
-    console.log("Fetched categories:", categoryData);
-    setCategories(categoryData);
-  };
+      /*----- If we have fewer than 4 new arrivals, add some featured products to make it 4-----*/
+      if (newArrivalProducts.length < 4) {
+        const featuredProducts = productData.filter(
+          (p: ProductType) => p.list_type === "featured"
+        );
+        const additionalProducts = featuredProducts.slice(
+          0,
+          4 - newArrivalProducts.length
+        );
 
-  loadData();
-}, []);
+        /*-----  Mark these additional products as new arrivals temporarily -----*/
+        additionalProducts.forEach((product: ProductType) => {
+          product.list_type = "new-arrival";
+        });
 
+        setNewArrivals([...newArrivalProducts, ...additionalProducts]);
+      } else {
+        /*----- If we have 4 or more new arrivals, just take the first 4 -----*/
+        setNewArrivals(newArrivalProducts.slice(0, 4));
+      }
 
+      setFeaturedProducts(
+        productData
+          .filter((p: ProductType) => p.list_type === "featured")
+          .slice(0, 2)
+      );
+
+      const categoryData = await fetchCategory();
+      console.log("Fetched categories:", categoryData);
+      setCategories(categoryData);
+    };
+
+    loadData();
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -64,19 +94,18 @@ const Home: React.FC = () => {
     }
   }, []);
 
-
   const handleDeleteProduct = async (id: number, fromFeatured: boolean) => {
-  try {
-    await fetchDeleteProductType(id);
-    if (fromFeatured) {
-      setFeaturedProducts((prev) => prev.filter((p) => p.id !== id));
-    } else {
-      setNewArrivals((prev) => prev.filter((p) => p.id !== id));
+    try {
+      await fetchDeleteProductType(id);
+      if (fromFeatured) {
+        setFeaturedProducts((prev) => prev.filter((p) => p.id !== id));
+      } else {
+        setNewArrivals((prev) => prev.filter((p) => p.id !== id));
+      }
+    } catch (error) {
+      console.error("Failed to delete product", error);
     }
-  } catch (error) {
-    console.error("Failed to delete product", error);
-  }
-};
+  };
 
   const handleAddProduct = async () => {
     const newProduct = {
@@ -85,30 +114,31 @@ const Home: React.FC = () => {
       product_details: newProductDescription,
       price: parseFloat(newProductPrice),
       category_id: parseInt(newProductCategory),
-      subcategory_id: 1, 
-      list_type: selectedProductList === "New Arrivals" ? "new-arrival" : "featured"
+      subcategory_id: 1,
+      list_type:
+        selectedProductList === "New Arrivals" ? "new-arrival" : "featured",
     };
 
     try {
-    const createdProduct = await fetchCreateProductType(newProduct);
+      const createdProduct = await fetchCreateProductType(newProduct);
 
-    // Uppdatera produktlistorna lokalt efter skapandet
-    if (createdProduct.list_type === "new-arrival") {
-      setNewArrivals((prev) => [...prev, createdProduct]);
-    } else {
-      setFeaturedProducts((prev) => [...prev, createdProduct]);
+      // Uppdatera produktlistorna lokalt efter skapandet
+      if (createdProduct.list_type === "new-arrival") {
+        setNewArrivals((prev) => [...prev, createdProduct]);
+      } else {
+        setFeaturedProducts((prev) => [...prev, createdProduct]);
+      }
+
+      setNewProductName("");
+      setNewProductPrice("");
+      setNewProductDescription("");
+      setNewProductCategory("Electronics");
+      setNewProductImage(null);
+      setIsNewArrival(false);
+      setSelectedProductList("Featured Products");
+    } catch (error) {
+      console.error("Error adding product:", error);
     }
-
-    setNewProductName("");
-    setNewProductPrice("");
-    setNewProductDescription("");
-    setNewProductCategory("Electronics");
-    setNewProductImage(null);
-    setIsNewArrival(false);
-    setSelectedProductList("Featured Products");
-  } catch (error) {
-    console.error("Error adding product:", error);
-  }
   };
 
   const handleImageChange = (
@@ -243,13 +273,17 @@ const Home: React.FC = () => {
 
       <section className="products-section">
         <h2 className="section-title">NEW ARRIVALS</h2>
-        <ProductGrid
-          products={newArrivals}
-          handleDeleteProduct={(id) => handleDeleteProduct(id, false)}
-          handleImageChange={(id, e) => handleImageChange(id, e, false)}
-          handlePriceChange={(id, price) => handlePriceChange(id, price, false)}
-          isAdmin={isAdmin}
-        />
+        <div>
+          <ProductGrid
+            products={newArrivals}
+            handleDeleteProduct={(id) => handleDeleteProduct(id, false)}
+            handleImageChange={(id, e) => handleImageChange(id, e, false)}
+            handlePriceChange={(id, price) =>
+              handlePriceChange(id, price, false)
+            }
+            isAdmin={isAdmin}
+          />
+        </div>
       </section>
 
       <section>
@@ -258,13 +292,17 @@ const Home: React.FC = () => {
 
       <section className="products-section">
         <h2 className="section-title">FEATURED PRODUCTS</h2>
-        <ProductGrid
-          products={featuredProducts}
-          handleDeleteProduct={(id) => handleDeleteProduct(id, true)}
-          handleImageChange={(id, e) => handleImageChange(id, e, true)}
-          handlePriceChange={(id, price) => handlePriceChange(id, price, true)}
-          isAdmin={isAdmin}
-        />
+        <div className="featured-products">
+          <ProductGrid
+            products={featuredProducts}
+            handleDeleteProduct={(id) => handleDeleteProduct(id, true)}
+            handleImageChange={(id, e) => handleImageChange(id, e, true)}
+            handlePriceChange={(id, price) =>
+              handlePriceChange(id, price, true)
+            }
+            isAdmin={isAdmin}
+          />
+        </div>
       </section>
 
       <section>

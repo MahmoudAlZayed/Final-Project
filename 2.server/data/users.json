@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Peter",
+    "lastname": "Gustafsson",
+    "email": "petergustafsson910@gmail.com",
+    "password": "$2b$10$E8NHYSCC/W8jf90A2k/BCe.nAohbaR2TTbVWuoE7VEEQo.FxKYr0u",
+    "role": "user"
+  }
+]

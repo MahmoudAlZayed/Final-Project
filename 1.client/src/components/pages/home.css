@@ -4,69 +4,140 @@
 
 /* Hero section responsive adjustments */
 .hero-section {
-  @apply bg-gray-100 py-8 sm:py-12 md:py-16 text-center bg-cover bg-top bg-no-repeat min-h-[300px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center;
+  @apply bg-gray-100 py-6 sm:py-10 md:py-16 text-center bg-cover bg-top bg-no-repeat min-h-[220px] sm:min-h-[300px] md:min-h-[500px] flex items-center justify-center;
   background-image: url("../../assets/women4.jpg");
 }
 
 .hero-container {
-  @apply container mx-auto px-4 bg-white shadow-lg p-4 sm:p-6 md:p-8 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl;
+  @apply container mx-auto px-3 sm:px-4 bg-white shadow-lg p-3 sm:p-5 md:p-8 max-w-[90%] sm:max-w-sm md:max-w-md lg:max-w-2xl;
 }
 
 .hero-title {
-  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-4 font-rajd;
+  @apply text-xl sm:text-2xl md:text-4xl font-bold text-gray-900 mb-1 sm:mb-3 md:mb-4 font-rajd;
   font-weight: 400;
 }
 
 .hero-description {
-  @apply text-base sm:text-lg md:text-xl text-gray-800 max-w-xl mx-auto mb-4 sm:mb-6 md:mb-8 font-rajd;
+  @apply text-sm sm:text-base md:text-xl text-gray-800 max-w-xl mx-auto mb-2 sm:mb-4 md:mb-8 font-rajd;
   font-weight: 400;
 }
 
 .hero-button {
-  @apply inline-block bg-gray-100 text-black rounded-sm px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-rajd;
+  @apply inline-block bg-gray-100 text-black rounded-sm px-2 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm md:text-base font-rajd;
   @apply hover:bg-gray-200 transition-colors;
   font-weight: 400;
 }
 
 /* Categories section responsive adjustments */
 .categories-section {
-  @apply container mx-auto px-4 py-6 sm:py-8 md:py-12;
+  @apply container mx-auto px-2 sm:px-4 py-4 sm:py-6 md:py-12;
 }
 
 .categories-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6;
 }
 
 .category-card {
-  @apply bg-white p-4 sm:p-6 rounded-lg shadow-sm text-center;
+  @apply bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm text-center;
 }
 
 .category-icon {
-  @apply w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4;
+  @apply w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4;
 }
 
 .category-title {
-  @apply text-base sm:text-lg font-medium;
+  @apply text-sm sm:text-base md:text-lg font-medium;
 }
 
 /* Products section responsive adjustments */
 .products-section {
-  @apply container mx-auto px-4 py-6 sm:py-8 md:py-12;
+  @apply container mx-auto px-2 sm:px-4 py-4 sm:py-6 md:py-12;
 }
 
 .products-section .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
   justify-content: center;
+  align-items: stretch;
   margin: 0 auto;
   max-width: 1200px;
 }
 
+.featured-products {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+
+/* Styles for the Featured Products section on the Home page */
+.featured-products .product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+
+/* Ensure product cards in this specific section take appropriate width and maintain their look */
+.featured-products .product-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08), 0 1.5px 4px 0 rgba(0,0,0,0.03);
+  padding: 1rem;
+  transition: all 0.3s;
+  width: calc(50% - 0.75rem);
+  max-width: 280px;
+  min-width: 220px;
+  margin-bottom: 1.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.featured-products .product-card:hover {
+  box-shadow: 0 8px 24px 0 rgba(0,0,0,0.12), 0 3px 8px 0 rgba(0,0,0,0.06);
+  transform: translateY(-4px);
+}
+
+
+/* Responsive adjustments for the featured products cards */
+@media (max-width: 639px) {
+  .featured-products .product-card {
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+@media (min-width: 640px) and (max-width: 767px) {
+  /* Between sm and md */
+  .featured-products .product-card {
+    max-width: 240px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Between md and lg */
+  .featured-products .product-card {
+    max-width: 260px;
+  }
+}
+
 /* Adjust for very small screens */
-@media (min-width: 322px) and (max-width: 639px) {
+@media (min-width: 322px) and (max-width: 479px) {
   .products-section .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+/* Adjust for small screens */
+@media (min-width: 480px) and (max-width: 639px) {
+  .products-section .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
   }
 }
@@ -74,7 +145,7 @@
 /* Adjust for medium screens */
 @media (min-width: 640px) and (max-width: 767px) {
   .products-section .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.25rem;
   }
 }
@@ -82,68 +153,101 @@
 /* Adjust for larger screens */
 @media (min-width: 768px) {
   .products-section .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* Adjust for extra large screens */
+@media (min-width: 1024px) {
+  .products-section .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
+  }
+  .featured-products {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3rem;
   }
 }
 
 .section-title {
-  @apply text-xl sm:text-2xl text-center mb-4 sm:mb-6 md:mb-8 text-black font-rajd;
+  @apply text-lg sm:text-xl md:text-2xl text-center mb-3 sm:mb-5 md:mb-8 text-black font-rajd;
   font-weight: 500;
 }
 
 .loading-indicator {
-  @apply text-center py-4 sm:py-6 md:py-8 text-gray-500;
+  @apply text-center py-3 sm:py-4 md:py-8 text-gray-500;
 }
 
 /*ADMIN*/
 
 .admin-panel {
-  @apply container mx-auto px-4 py-12 text-black bg-gray-50 mt-2;
+  @apply container mx-auto px-2 sm:px-4 py-6 sm:py-8 md:py-12 text-black bg-gray-50 mt-2;
 }
 
 .selection-description {
-  @apply text-center text-gray-600 mb-8;
+  @apply text-center text-gray-600 mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base;
 }
 
 .selection-container {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-2 items-center max-w-[900px] flex justify-center mx-auto;
+  @apply grid grid-cols-1 md:grid-cols-2 gap-2 items-center max-w-full md:max-w-[900px] mx-auto;
 }
 
-.first-column {
-  @apply flex flex-col space-y-4;
-}
-
+.first-column,
 .second-column {
-  @apply flex flex-col space-y-4 mb-4;
+  @apply flex flex-col space-y-3 sm:space-y-4 mb-3 sm:mb-4;
+  width: 100%;
 }
 
 .input-field-admin {
-  @apply w-96 px-4 py-2 border border-gray-200 rounded-md mb-4 placeholder-white text-white mx-auto;
-  height: 30%;
+  @apply w-full px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-200 rounded-md mb-2 sm:mb-4 placeholder-white text-white mx-auto;
+  min-height: 30px;
 }
 
 .text-field-admin {
-  @apply w-96 px-4 py-2 border border-gray-200 rounded-md mb-4 placeholder-white text-white mx-auto;
-  height: 50%;
+  @apply w-full px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-200 rounded-md mb-2 sm:mb-4 placeholder-white text-white mx-auto;
+  min-height: 60px;
 }
 
 .select-category,
 .select-product-list {
-  @apply w-96 px-4 py-2 border border-gray-200 rounded-md mb-4 text-white mx-auto;
+  @apply w-full px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-200 rounded-md mb-2 sm:mb-4 text-white mx-auto;
 }
 
 .select-file,
 .select-new-arrival {
-  @apply w-52 px-4 py-2 ml-4 mx-auto;
+  @apply w-full px-3 sm:px-4 py-1.5 sm:py-2 mx-auto;
 }
 
 .admin-buttons {
-  @apply flex justify-center space-x-4 mt-8;
+  @apply flex justify-center space-x-2 sm:space-x-4 mt-4 sm:mt-6 md:mt-8;
 }
 
 .add-product-button,
 .logout-button {
-  @apply bg-gray-100 text-black rounded-sm px-4 py-2 border border-gray-300;
+  @apply bg-gray-100 text-black rounded-sm px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-300 text-xs sm:text-sm md:text-base;
   @apply hover:bg-gray-200 transition-colors;
+}
+
+/* Extra small devices */
+@media (min-width: 322px) and (max-width: 374px) {
+  .hero-container {
+    @apply p-2 max-w-[95%];
+  }
+
+  .hero-title {
+    @apply text-lg mb-1;
+  }
+
+  .hero-description {
+    @apply text-xs;
+  }
+
+  .hero-button {
+    @apply px-2 py-1 text-xs;
+  }
+
+  .section-title {
+    @apply text-base mb-2;
+  }
 }

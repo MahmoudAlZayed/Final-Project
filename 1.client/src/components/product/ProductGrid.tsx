@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { ProductType } from "../../types";
-import { CartContext } from "../../App";
+import { useCart } from "../../context/CartContext";
 import "./ProductGrid.css";
 import "./productcard.css";
 
@@ -22,7 +22,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   handlePriceChange,
   isAdmin,
 }) => {
-  const { addToCart } = useContext(CartContext);
+  const { addItem } = useCart();
 
   if (!products || products.length === 0) {
     return <p className="no-products">No products available</p>;
@@ -48,7 +48,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           {/* Add to cart*/}
           {!isAdmin && (
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => addItem(product)}
               className="add-to-cart-button"
             >
               Add to Cart
