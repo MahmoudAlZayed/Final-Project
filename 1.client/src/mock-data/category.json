@@ -1,0 +1,7 @@
+[
+  { "id": 1, "category": "Mens" },
+  { "id": 2, "category": "Womans" },
+  { "id": 3, "category": "Kids" },
+  { "id": 4, "category": "Accessories" },
+  { "id": 5, "category": "Footwear" }
+]

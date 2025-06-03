@@ -1,14 +1,3 @@
-// Product type definition
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  imageUrl?: string;
-  inStock: boolean;
-}
-
 // Cart item type definition
 export interface CartItem {
   productId: number;
@@ -33,4 +22,69 @@ export interface LoginCredentials {
   password?: string;
 }
 
+// Mockdata & API types
 
+export interface ProductType {
+  id: number;
+  product_name: string;
+  img_url?: string;
+  product_details: string;
+  price: number;
+  category_id: number;
+  subcategory_id: number;
+  list_type: "new-arrival" | "featured";
+}
+// Removed inStock: boolean; from old Product, add a state in cartItem/app.tsx
+
+export interface ProductListType {
+  id?: number; // add ID in mockdata to match
+  product: number | ProductType;
+  size_id: number | SizeType;
+  color_id: number | ColorType;
+  quantity: number;
+}
+
+export interface CustomerType {
+  id?: number; // add ID in mockdata to match
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  adress: string;
+  city: string;
+  zip_code: string;
+  phone_number: string;
+}
+
+export interface OrderType {
+  id: number;
+  customer_id: number | CustomerType;
+  order_date: Date;
+}
+
+export interface OrderDetailType {
+  id: number;
+  order_id: number;
+  product_id: number;
+  quantity: number;
+}
+
+export interface CategoryType {
+  id: number;
+  category: string;
+}
+
+export interface SubCategoryType {
+  id: number;
+  subcategory: string;
+}
+
+export interface ColorType {
+  id: number;
+  color: string;
+}
+
+export interface SizeType {
+  id: number;
+  size: string;
+}

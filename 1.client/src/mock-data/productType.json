@@ -1,0 +1,245 @@
+[
+  {
+    "id": 1,
+    "product_name": "Mens t-shirt",
+    "img_url": "img",
+    "product_details": "A mens t-shirt",
+    "price": 10.99,
+    "category_id": 1,
+    "subcategory_id": 1
+  },
+  {
+    "id": 2,
+    "product_name": "Mens classic shirt",
+    "img_url": "img",
+    "product_details": "A classic shirt for weddings and workintervjues",
+    "price": 10.99,
+    "category_id": 1,
+    "subcategory_id": 1
+  },
+  {
+    "id": 3,
+    "product_name": "Mens cool t-shirt",
+    "img_url": "img",
+    "product_details": "A cool manly mens t-shirt",
+    "price": 20.99,
+    "category_id": 1,
+    "subcategory_id": 1
+  },
+  {
+    "id": 4,
+    "product_name": "SUPERSLIM MAN LEATHERPANTS",
+    "img_url": "img",
+    "product_details": "A pair of superslim black leatherpants for cool bikers and wannabe rockstars!",
+    "price": 79.99,
+    "category_id": 1,
+    "subcategory_id": 2
+  },
+  {
+    "id": 5,
+    "product_name": "Cargopants",
+    "img_url": "img",
+    "product_details": "A pair of cargopants.",
+    "price": 79.99,
+    "category_id": 1,
+    "subcategory_id": 2
+  },
+  {
+    "id": 6,
+    "product_name": "Jeans",
+    "img_url": "img",
+    "product_details": "A pair baggy.",
+    "price": 79.99,
+    "category_id": 1,
+    "subcategory_id": 2
+  },
+  {
+    "id": 7,
+    "product_name": "Men underware",
+    "img_url": "img",
+    "product_details": "A pair of superslim underware",
+    "price": 3.99,
+    "category_id": 1,
+    "subcategory_id": 3
+  },
+  {
+    "id": 8,
+    "product_name": "Womans Tanktop",
+    "img_url": "img",
+    "product_details": "A classic tanktop",
+    "price": 10.99,
+    "category_id": 2,
+    "subcategory_id": 1
+  },
+  {
+    "id": 9,
+    "product_name": "Womans T-shirt",
+    "img_url": "img",
+    "product_details": "A t-shirt",
+    "price": 10.99,
+    "category_id": 2,
+    "subcategory_id": 1
+  },
+  {
+    "id": 10,
+    "product_name": "Womans shirt",
+    "img_url": "img",
+    "product_details": "A shirt for the ladies",
+    "price": 10.99,
+    "category_id": 2,
+    "subcategory_id": 1
+  },
+  {
+    "id": 11,
+    "product_name": "Womanpants",
+    "img_url": "img",
+    "product_details": "A feminin pair of womanpants",
+    "price": 2.99,
+    "category_id": 2,
+    "subcategory_id": 2
+  },
+  {
+    "id": 12,
+    "product_name": "Womanskirt",
+    "img_url": "img",
+    "product_details": "A feminin pair of Womanskirt",
+    "price": 12.99,
+    "category_id": 2,
+    "subcategory_id": 2
+  },
+  {
+    "id": 13,
+    "product_name": "Womanjeans",
+    "img_url": "img",
+    "product_details": "A feminin pair of Womanjeans",
+    "price": 22.99,
+    "category_id": 2,
+    "subcategory_id": 2
+  },
+  {
+    "id": 14,
+    "product_name": "Woman underware",
+    "img_url": "img",
+    "product_details": "A pair of woman underware",
+    "price": 1.99,
+    "category_id": 2,
+    "subcategory_id": 3
+  },
+  {
+    "id": 15,
+    "product_name": "Children shirt",
+    "img_url": "img",
+    "product_details": "A cute funny shirt",
+    "price": 100.99,
+    "category_id": 3,
+    "subcategory_id": 1
+  },
+  {
+    "id": 16,
+    "product_name": "Children tshirt",
+    "img_url": "img",
+    "product_details": "A soft tshirt for a soft child",
+    "price": 100.99,
+    "category_id": 3,
+    "subcategory_id": 1
+  },
+  {
+    "id": 17,
+    "product_name": "Children onepice",
+    "img_url": "img",
+    "product_details": "A cozy onepice for all children",
+    "price": 100.99,
+    "category_id": 3,
+    "subcategory_id": 1
+  },
+  {
+    "id": 18,
+    "product_name": "Children pants",
+    "img_url": "img",
+    "product_details": "Perfect pants for every occasions",
+    "price": 100.99,
+    "category_id": 3,
+    "subcategory_id": 2
+  },
+  {
+    "id": 19,
+    "product_name": "Children jeans",
+    "img_url": "img",
+    "product_details": "Perfect pants for every occasions",
+    "price": 100.99,
+    "category_id": 3,
+    "subcategory_id": 2
+  },
+  {
+    "id": 20,
+    "product_name": "Children shortpants",
+    "img_url": "img",
+    "product_details": "Perfect pants for every summer day",
+    "price": 100.99,
+    "category_id": 3,
+    "subcategory_id": 2
+  },
+  {
+    "id": 21,
+    "product_name": "Sunglasses",
+    "img_url": "img",
+    "product_details": "For sunnydays and hungoverdays",
+    "price": 100.99,
+    "category_id": 4,
+    "subcategory_id": 4
+  },
+  {
+    "id": 22,
+    "product_name": "Diamondring",
+    "img_url": "img",
+    "product_details": "Get some ice on those fingers",
+    "price": 100.99,
+    "category_id": 4,
+    "subcategory_id": 5
+  },
+  {
+    "id": 23,
+    "product_name": "Goldchain",
+    "img_url": "img",
+    "product_details": "When you need som rizzle fo yo dizzle zizzle",
+    "price": 999.99,
+    "category_id": 4,
+    "subcategory_id": 5
+  },
+  {
+    "id": 24,
+    "product_name": "Rubberboots",
+    "img_url": "img",
+    "product_details": "For rainy days and fishing activites",
+    "price": 100.99,
+    "category_id": 5,
+    "subcategory_id": 9
+  },
+  {
+    "id": 25,
+    "product_name": "Boots",
+    "img_url": "img",
+    "product_details": "For hicking up the hills and marching down the streets",
+    "price": 50.99,
+    "category_id": 5,
+    "subcategory_id": 9
+  },
+  {
+    "id": 26,
+    "product_name": "Sneakers",
+    "img_url": "img",
+    "product_details": "Classic sneakers for your feet. Colour:",
+    "price": 10.99,
+    "category_id": 5,
+    "subcategory_id": 7
+  },
+  {
+    "id": 27,
+    "product_name": "Pumps",
+    "img_url": "img",
+    "product_details": "This is a pair of pumps.",
+    "price": 100.99,
+    "category_id": 5,
+    "subcategory_id": 8
+  }
+]
