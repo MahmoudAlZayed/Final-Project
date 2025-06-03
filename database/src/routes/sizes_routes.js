@@ -9,10 +9,9 @@ import {
 
 const router = express.Router();
 
-router.get('/', createSize);
-router.get('/:id', getAllSizes);
-
-router.post('/', getSizeById);
+router.get('/', getAllSizes);
+router.get('/:id', getSizeById);
+router.post('/', createSize);
 router.put('/:id', updateSize);
 router.delete('/:id', deleteSize);
 

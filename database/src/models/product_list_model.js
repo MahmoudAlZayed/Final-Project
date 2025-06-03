@@ -1,4 +1,4 @@
-import { DataTypes} from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../config/db.js';
 import Sizes from './sizes_model.js';
 import Color from './colors_model.js';
@@ -9,13 +9,14 @@ const Products_list = sequelize.define('Product_list', {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-  },
-    product: { 
-        type: DataTypes.STRING,
+    },
+    product: {
+        type: DataTypes.INTEGER,
         references: {
             model: Products_type,
             key: 'id',
-    }},
+        }
+    },
     size_id: {
         type: DataTypes.INTEGER,
         references: {
@@ -31,10 +32,11 @@ const Products_list = sequelize.define('Product_list', {
         },
     },
     quantity: {
-        type: DataTypes.INTEGER},
+        type: DataTypes.INTEGER
+    },
 }, {
-  timestamps: false,
-  tableName: "products_list",
+    timestamps: false,
+    tableName: "products_list",
 });
 
 export default Products_list;
