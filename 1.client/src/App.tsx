@@ -9,6 +9,8 @@ import AdminLogin from "./components/pages/AdminLogin";
 import Women from "./components/pages/Women";
 import Men from "./components/pages/Men";
 import Kids from "./components/pages/Kids";
+import Footwear from "./components/pages/FootWear";
+import Accessories from "./components/pages/Accessories";
 import { CartItem } from "./types";
 import "./App.css";
 
@@ -103,6 +105,8 @@ const App: React.FC = () => {
               <Route path="/women" element={<Women />} />
               <Route path="/men" element={<Men />} />
               <Route path="/kids" element={<Kids />} />
+              <Route path="/footwear" element={<Footwear />} />
+              <Route path="/accessories" element={<Accessories />} />
             </Routes>
           </main>
           <Footer />

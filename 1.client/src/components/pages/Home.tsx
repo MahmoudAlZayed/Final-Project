@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductGrid from "../product/ProductGrid";
@@ -7,6 +6,7 @@ import "./Home.css";
 import { CategoryType, ProductType } from "../../types";
 import { jwtDecode } from "jwt-decode";
 import OffersGallery from "../layout/OffersGallery";
+import { productImages } from "../../assets/images";
 
 // Mock
 import { fetchCategory } from "../../services/categoryService";
@@ -26,10 +26,9 @@ const Home: React.FC = () => {
     useState("Featured Products");
   const [isNewArrival, setIsNewArrival] = useState(false);
 
+
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
-  
-
 
   useEffect(() => {
   const loadData = async () => {
@@ -276,5 +275,3 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-
-//Mahmoud
