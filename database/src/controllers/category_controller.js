@@ -9,7 +9,7 @@ export const createCategory = async (req, res) => {
   }
 };
 
-export const getCategorys = async (req, res) => {
+export const getCategories = async (req, res) => {
   try {
     const categorys = await Category.findAll();
     console.log("Fetched categories:", categorys);

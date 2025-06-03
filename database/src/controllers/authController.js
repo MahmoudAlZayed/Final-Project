@@ -4,6 +4,7 @@ import { User } from "../models/index.js";
 const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
+    console.log(req.body);
     const hash = await bcrypt.hash(password, 10);
     const user = await User.create({ firstName, lastName, email, password: hash });
     res.status(201).json({ message: "Registration successful", user });

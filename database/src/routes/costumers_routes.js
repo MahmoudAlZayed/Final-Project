@@ -9,10 +9,9 @@ import {
 
 const router = express.Router();
 
-router.get('/', createCustomer);
-router.get('/:id', getAllCustomers);
-
-router.post('/', getCustomerById);
+router.get('/', getAllCustomers);
+router.get('/:id', getCustomerById);
+router.post('/', createCustomer);
 router.put('/:id', updateCustomer);
 router.delete('/:id', deleteCustomer);
 

@@ -10,10 +10,9 @@ import {
 
 const router = express.Router();
 
-router.get('/', createColor);
-router.get('/:id', getColors);
-
-router.post('/', getColorById);
+router.get('/', getColors);
+router.get('/:id', getColorById);
+router.post('/', createColor);
 router.put('/:id', updateColor);
 router.delete('/:id', deleteColor);
 
