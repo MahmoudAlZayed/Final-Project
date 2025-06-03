@@ -20,8 +20,8 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="login-container">
+      <div className="login-card">
         <h1 className="heading">Admin Login</h1>
         <form onSubmit={handleSubmit} className="form-group">
           <input

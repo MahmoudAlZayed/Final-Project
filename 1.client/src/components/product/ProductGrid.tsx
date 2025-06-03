@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { Product } from "../../types";
+import { ProductType } from "../../types";
 import { CartContext } from "../../App";
 import "./ProductGrid.css";
 import "./productcard.css";
 
 interface ProductGridProps {
-  products: Product[];
+  products: ProductType[];
   handleDeleteProduct: (id: number) => void;
   handleImageChange: (
     id: number,
@@ -34,14 +34,14 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         <div key={product.id} className="product-card">
           <div className="product-image-container">
             <img
-              src={product.imageUrl}
-              alt={product.name}
+              src={product.img_url}
+              alt={product.product_name}
               className="product-image"
             />
           </div>
           <div className="product-info">
-            <h3 className="product-title">{product.name}</h3>
-            <p className="product-description">{product.description}</p>
+            <h3 className="product-title">{product.product_name}</h3>
+            <p className="product-description">{product.product_details}</p>
             <p className="product-price">${product.price.toFixed(2)}</p>
           </div>
 

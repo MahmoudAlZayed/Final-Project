@@ -12,6 +12,7 @@ export const createCategory = async (req, res) => {
 export const getCategorys = async (req, res) => {
   try {
     const categorys = await Category.findAll();
+    console.log("Fetched categories:", categorys);
     res.json(categorys);
   } catch (error) {
     res.status(500).json({ error: error.message });

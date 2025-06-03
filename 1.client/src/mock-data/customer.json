@@ -1,0 +1,32 @@
+[
+  {
+    "first_name": "Tommy",
+    "last_name": "McDondle",
+    "email": "McDodle@mail.com",
+    "password": "12345",
+    "adress": "Draottninggatan 22",
+    "city": "Helsingborg",
+    "zip_code": "25231",
+    "phone_number": "070-1234567"
+  },
+  {
+    "first_name": "Marie",
+    "last_name": "Antoinette",
+    "email": "antoinette@royaltymail.com",
+    "password": "letthemeatbread",
+    "adress": "Kingsroad 1",
+    "city": "Paris",
+    "zip_code": "25231",
+    "phone_number": "070-1234567"
+  },
+  {
+    "first_name": "Kalle",
+    "last_name": "Anka",
+    "email": "K.Anka@Quackmail.com",
+    "password": "Kajsa",
+    "adress": "Paradisäpplevägen 111",
+    "city": "Ankeborg",
+    "zip_code": "25231",
+    "phone_number": "070-1234567"
+  }
+]

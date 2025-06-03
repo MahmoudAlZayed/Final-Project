@@ -1,0 +1,11 @@
+[
+  { "id": 1, "subcategory": "Tops" },
+  { "id": 2, "subcategory": "Bottom" },
+  { "id": 3, "subcategory": "Underware" },
+  { "id": 4, "subcategory": "Glasses" },
+  { "id": 5, "subcategory": "Jewlery" },
+  { "id": 6, "subcategory": "Bags" },
+  { "id": 7, "subcategory": "Sneakers" },
+  { "id": 8, "subcategory": "Pumps" },
+  { "id": 9, "subcategory": "Boots" }
+]

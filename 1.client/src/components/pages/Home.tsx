@@ -3,91 +3,52 @@ import { Link } from "react-router-dom";
 import ProductGrid from "../product/ProductGrid";
 import PictureGallery from "../layout/PictureGallery";
 import "./Home.css";
-import { Product } from "../../types";
+import { CategoryType, ProductType } from "../../types";
 import { jwtDecode } from "jwt-decode";
 import OffersGallery from "../layout/OffersGallery";
 import { productImages } from "../../assets/images";
 
+// Mock
+import { fetchCategory } from "../../services/categoryService";
+import { fetchProductTypes, fetchCreateProductType, fetchDeleteProductType } from "../../services/productTypeService";
+
 const Home: React.FC = () => {
-  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-  const [newArrivals, setNewArrivals] = useState<Product[]>([]);
+  const [featuredProducts, setFeaturedProducts] = useState<ProductType[]>([]);
+  const [newArrivals, setNewArrivals] = useState<ProductType[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
 
   const [newProductName, setNewProductName] = useState("");
-  const [newProductPrice, setNewProductPrice] = useState<number | string>("");
+  const [newProductPrice, setNewProductPrice] = useState<string>("");
   const [newProductDescription, setNewProductDescription] = useState("");
   const [newProductImage, setNewProductImage] = useState<File | null>(null);
-  const [newProductCategory, setNewProductCategory] = useState("Electronics");
+  const [newProductCategory, setNewProductCategory] = useState<string>("");
   const [selectedProductList, setSelectedProductList] =
     useState("Featured Products");
   const [isNewArrival, setIsNewArrival] = useState(false);
 
-  const fetchProducts = async () => {
-    const fetchedFeaturedProducts = [
-      {
-        id: 1,
-        name: "Smartphone X",
-        price: 699.99,
-        description: "Latest smartphone with advanced features",
-        category: "Electronics",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 2,
-        name: "Wireless Headphones",
-        price: 149.99,
-        description: "Premium wireless headphones with noise cancellation",
-        category: "Electronics",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 3,
-        name: "Smart Watch",
-        price: 249.99,
-        description: "Fitness tracker and smartwatch with health monitoring",
-        category: "Electronics",
-        imageUrl: "",
-        inStock: false,
-      },
-    ];
-    const fetchedNewArrivals = [
-      {
-        id: 4,
-        name: "Cotton T-Shirt",
-        price: 24.99,
-        description: "Comfortable cotton t-shirt in various colors",
-        category: "Clothing",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 5,
-        name: "Desk Lamp",
-        price: 39.99,
-        description: "Modern desk lamp with adjustable brightness",
-        category: "Home & Garden",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 6,
-        name: "Face Cream",
-        price: 29.99,
-        description: "Hydrating face cream for all skin types",
-        category: "Beauty",
-        imageUrl: "",
-        inStock: true,
-      },
-    ];
-    setFeaturedProducts(fetchedFeaturedProducts);
-    setNewArrivals(fetchedNewArrivals);
-  };
+
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+  const loadData = async () => {
+    const productData = await fetchProductTypes();
+    console.log("Fetched products:", productData);
+
+    setProducts(productData);
+
+    setNewArrivals(productData.filter((p: ProductType) => p.list_type === "new-arrival"));
+    setFeaturedProducts(productData.filter((p: ProductType) => p.list_type === "featured"));
+
+    const categoryData = await fetchCategory();
+    console.log("Fetched categories:", categoryData);
+    setCategories(categoryData);
+  };
+
+  loadData();
+}, []);
+
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -103,38 +64,51 @@ const Home: React.FC = () => {
     }
   }, []);
 
-  const handleDeleteProduct = (id: number, fromFeatured: boolean) => {
+
+  const handleDeleteProduct = async (id: number, fromFeatured: boolean) => {
+  try {
+    await fetchDeleteProductType(id);
     if (fromFeatured) {
       setFeaturedProducts((prev) => prev.filter((p) => p.id !== id));
     } else {
       setNewArrivals((prev) => prev.filter((p) => p.id !== id));
     }
-  };
+  } catch (error) {
+    console.error("Failed to delete product", error);
+  }
+};
 
-  const handleAddProduct = () => {
-    const newProduct: Product = {
-      id: Date.now(),
-      name: newProductName,
-      price: parseFloat(newProductPrice.toString()),
-      description: newProductDescription,
-      category: newProductCategory,
-      imageUrl: newProductImage
-        ? URL.createObjectURL(newProductImage)
-        : "/images/placeholder.jpg",
-      inStock: true,
+  const handleAddProduct = async () => {
+    const newProduct = {
+      product_name: newProductName,
+      img_url: newProductImage ? newProductImage.name : "placeholder.jpg",
+      product_details: newProductDescription,
+      price: parseFloat(newProductPrice),
+      category_id: parseInt(newProductCategory),
+      subcategory_id: 1, 
+      list_type: selectedProductList === "New Arrivals" ? "new-arrival" : "featured"
     };
-    if (selectedProductList === "Featured Products") {
-      setFeaturedProducts((prev) => [...prev, newProduct]);
+
+    try {
+    const createdProduct = await fetchCreateProductType(newProduct);
+
+    // Uppdatera produktlistorna lokalt efter skapandet
+    if (createdProduct.list_type === "new-arrival") {
+      setNewArrivals((prev) => [...prev, createdProduct]);
     } else {
-      setNewArrivals((prev) => [...prev, newProduct]);
+      setFeaturedProducts((prev) => [...prev, createdProduct]);
     }
 
     setNewProductName("");
     setNewProductPrice("");
     setNewProductDescription("");
-    setNewProductImage(null);
     setNewProductCategory("Electronics");
+    setNewProductImage(null);
+    setIsNewArrival(false);
     setSelectedProductList("Featured Products");
+  } catch (error) {
+    console.error("Error adding product:", error);
+  }
   };
 
   const handleImageChange = (
@@ -145,7 +119,7 @@ const Home: React.FC = () => {
     const updatedImage = event.target.files?.[0];
     if (updatedImage) {
       const imageUrl = URL.createObjectURL(updatedImage);
-      const update = (products: Product[]) =>
+      const update = (products: ProductType[]) =>
         products.map((p) => (p.id === id ? { ...p, imageUrl } : p));
       fromFeatured
         ? setFeaturedProducts((prev) => update(prev))
@@ -158,7 +132,7 @@ const Home: React.FC = () => {
     newPrice: number,
     fromFeatured: boolean
   ) => {
-    const update = (products: Product[]) =>
+    const update = (products: ProductType[]) =>
       products.map((p) => (p.id === id ? { ...p, price: newPrice } : p));
     fromFeatured
       ? setFeaturedProducts((prev) => update(prev))
@@ -189,13 +163,18 @@ const Home: React.FC = () => {
 
           <form className="selection-container">
             <div className="first-column">
-              <input
-                className="input-field-admin"
-                type="text"
-                placeholder="Product Name"
+              <select
+                className="select-category"
                 value={newProductName}
                 onChange={(e) => setNewProductName(e.target.value)}
-              />
+              >
+                <option value="">-- Select Product --</option>
+                {products.map((pro) => (
+                  <option key={pro.id} value={pro.product_name.toString()}>
+                    {pro.product_name}
+                  </option>
+                ))}
+              </select>
               <input
                 className="input-field-admin"
                 type="number"
@@ -217,10 +196,12 @@ const Home: React.FC = () => {
                 value={newProductCategory}
                 onChange={(e) => setNewProductCategory(e.target.value)}
               >
-                <option value="Electronics">Electronics</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Home & Garden">Home & Garden</option>
-                <option value="Beauty">Beauty</option>
+                <option value="">-- Select Category --</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.category}>
+                    {cat.category}
+                  </option>
+                ))}
               </select>
               <select
                 className="select-product-list"
@@ -239,17 +220,10 @@ const Home: React.FC = () => {
                     setNewProductImage(e.target.files?.[0] || null)
                   }
                 />
-                <label className="select-new-arrival">
-                  <input
-                    type="checkbox"
-                    checked={isNewArrival}
-                    onChange={(e) => setIsNewArrival(e.target.checked)}
-                  />
-                  New Arrival
-                </label>
               </div>
             </div>
           </form>
+
           <div className="admin-buttons">
             <button className="add-product-button" onClick={handleAddProduct}>
               Add Product

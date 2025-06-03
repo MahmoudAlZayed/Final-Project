@@ -14,7 +14,7 @@ import Accessories from "./components/pages/Accessories";
 import { CartItem } from "./types";
 import "./App.css";
 
-import { Product } from "./types";
+import { ProductType } from "./types";
 
 // Cart context for managing cart state across components
 
@@ -22,7 +22,7 @@ interface CartContextType {
   cartItems: CartItem[];
 
   //Mahmoud:
-  addToCart: (product: Product) => void;
+  addToCart: (product: ProductType) => void;
   //Mahmoud
 
   //Peter"
@@ -53,7 +53,7 @@ const App: React.FC = () => {
   // Cart state management
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (product: Product, quantity: number = 1) => {
+  const addToCart = (product: ProductType, quantity: number = 1) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find(
         (item) => item.productId === product.id
