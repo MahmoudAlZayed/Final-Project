@@ -34,7 +34,7 @@ const CartItem: React.FC<CartItemProps> = ({
 
       <div className="cart-item-details">
         <h4 className="cart-item-name">{item.product_name}</h4>
-        <p className="cart-item-price">${item.price.toFixed(2)}</p>
+        <p className="cart-item-price">${Number(item.price).toFixed(2)}</p>
       </div>
 
       <div className="cart-item-actions">
@@ -68,7 +68,7 @@ const CartItem: React.FC<CartItemProps> = ({
       <div className="cart-item-subtotal">
         <span className="subtotal-label">Subtotal:</span>
         <span className="subtotal-amount">
-          ${(item.price * item.quantity).toFixed(2)}
+          ${(Number(item.price) * item.quantity).toFixed(2)}
         </span>
       </div>
     </div>
