@@ -1,0 +1,110 @@
+.order-confirmation-page {
+  @apply py-6 sm:py-8 md:py-12;
+}
+
+.order-confirmation-container {
+  @apply container-confirmation mx-auto px-4 max-w-2xl;
+}
+
+/* Using a unique class name to avoid conflicts with other container classes */
+.container-confirmation {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.confirmation-content {
+  @apply bg-white p-4 sm:p-6 md:p-8 border border-gray-200 rounded-lg shadow-sm text-center;
+}
+
+.confirmation-icon {
+  @apply mx-auto mb-4 sm:mb-6;
+}
+
+.check-icon {
+  @apply h-16 w-16 sm:h-20 sm:w-20 text-green-500;
+}
+
+.confirmation-title {
+  @apply text-xl sm:text-2xl md:text-3xl font-medium mb-3 sm:mb-4;
+}
+
+.confirmation-message {
+  @apply text-gray-600 mb-6 sm:mb-8;
+}
+
+.order-details {
+  @apply bg-gray-50 p-4 sm:p-6 rounded-md mb-6 sm:mb-8 mx-auto max-w-md;
+}
+
+.order-detail-item {
+  @apply flex flex-col sm:flex-row sm:justify-between py-2 border-b border-gray-200 last:border-b-0;
+}
+
+.detail-label {
+  @apply text-sm text-gray-500 mb-1 sm:mb-0;
+}
+
+.detail-value {
+  @apply font-medium;
+}
+
+.confirmation-message-additional {
+  @apply text-sm text-gray-500 mb-6 sm:mb-8;
+}
+
+.confirmation-message-additional p {
+  @apply mb-1;
+}
+
+.confirmation-actions {
+  @apply flex flex-col sm:flex-row justify-center gap-3 sm:gap-4;
+}
+
+.continue-shopping-button {
+  @apply w-full sm:w-auto py-2 px-6 bg-black text-white rounded hover:bg-gray-800 transition-colors;
+}
+
+.view-orders-button {
+  @apply w-full sm:w-auto py-2 px-6 bg-white text-black border border-gray-300 rounded hover:bg-gray-50 transition-colors;
+}
+
+/* Responsive adjustments for small screens */
+@media (min-width: 322px) and (max-width: 639px) {
+  .order-confirmation-page {
+    @apply py-4;
+  }
+
+  .order-confirmation-container {
+    @apply px-2;
+  }
+
+  .confirmation-content {
+    @apply p-3 sm:p-4;
+  }
+
+  .check-icon {
+    @apply h-12 w-12;
+  }
+
+  .confirmation-title {
+    @apply text-lg mb-2;
+  }
+
+  .confirmation-message {
+    @apply text-sm mb-4;
+  }
+
+  .order-details {
+    @apply p-3 mb-4;
+  }
+
+  .confirmation-message-additional {
+    @apply text-xs mb-4;
+  }
+
+  .continue-shopping-button,
+  .view-orders-button {
+    @apply py-1.5 text-sm;
+  }
+}

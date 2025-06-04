@@ -1,5 +1,5 @@
 .product-card {
-  @apply bg-white rounded-lg overflow-hidden shadow-lg p-6;
+  @apply bg-white rounded-lg overflow-hidden shadow-lg p-3 sm:p-4 md:p-6;
   @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
 }
 
@@ -8,7 +8,26 @@
 }
 
 .product-image-container {
-  @apply h-72 bg-gray-100 flex items-center justify-center relative;
+  @apply bg-gray-100 flex items-center justify-center relative;
+  height: 140px;
+}
+
+@media (min-width: 480px) {
+  .product-image-container {
+    height: 180px;
+  }
+}
+
+@media (min-width: 640px) {
+  .product-image-container {
+    height: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  .product-image-container {
+    height: 220px;
+  }
 }
 
 .out-of-stock-badge {
@@ -24,32 +43,42 @@
 }
 
 .product-info {
-  @apply p-4;
+  @apply p-2 sm:p-3 md:p-4;
 }
 
 .product-title {
-  @apply text-lg font-medium mb-2 text-gray-800 font-rajd;
+  @apply text-sm sm:text-base md:text-lg font-medium mb-1 sm:mb-2 text-gray-800 font-rajd;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.5rem;
 }
 
 .product-description {
-  @apply text-gray-800 mt-2 font-rajd h-[50px];
+  @apply text-xs sm:text-sm text-gray-800 mt-1 sm:mt-2 font-rajd;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.5rem;
 }
 
 .product-price {
-  @apply text-xl font-bold text-gray-800 mt-4 font-rajd;
+  @apply text-base sm:text-lg md:text-xl font-bold text-gray-800 mt-2 sm:mt-3 md:mt-4 font-rajd;
 }
 
 .add-to-cart-button {
-  @apply bg-black text-white px-4 py-2 rounded-md w-full mt-4 hover:bg-customGreen transition-colors duration-300 font-rajd;
+  @apply bg-black text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-md w-full mt-2 sm:mt-3 md:mt-4 hover:bg-customGreen transition-colors duration-300 font-rajd text-xs sm:text-sm md:text-base;
 }
 
 /*ADMIN*/
 
 .admin-input,
 .admin-input-file {
-  @apply border p-2 rounded w-full mb-2;
+  @apply border p-1 sm:p-2 rounded w-full mb-1 sm:mb-2 text-xs sm:text-sm;
 }
 
 .delete-button {
-  @apply bg-red-500 text-white px-4 py-2 rounded-md mt-2;
+  @apply bg-red-500 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-md mt-1 sm:mt-2 text-xs sm:text-sm;
 }

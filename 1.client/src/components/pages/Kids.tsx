@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Product } from "../../types";
+import React, { useState, useEffect } from "react";
+import { ProductType } from "../../types";
 import ProductGrid from "../product/ProductGrid";
 import "./Kids.css";
-import { CartContext } from "../../App";
 import { jwtDecode } from "jwt-decode";
+import { fetchProductTypes } from "../../services/productTypeService";
 
 const Kids: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -30,70 +30,19 @@ const Kids: React.FC = () => {
 
   const fetchKidsProducts = async () => {
     setIsLoading(true);
-
-    /* In a real app, this would be an API call */
-
-    /* For now, we'll use sample data */
-
-    const kidsProducts: Product[] = [
-      {
-        id: 301,
-        name: "Kids' T-Shirt",
-        price: 19.99,
-        description: "Soft cotton t-shirt with fun design",
-        category: "Kids",
-        imageUrl: "/images/kids-tshirt.jpg",
-        inStock: true,
-      },
-      {
-        id: 302,
-        name: "Kids' Jeans",
-        price: 29.99,
-        description: "Durable jeans with adjustable waist",
-        category: "Kids",
-        imageUrl: "/images/kids-jeans.jpg",
-        inStock: true,
-      },
-      {
-        id: 303,
-        name: "Kids' Dress",
-        price: 34.99,
-        description: "Cute dress for special occasions",
-        category: "Kids",
-        imageUrl: "/images/kids-dress.jpg",
-        inStock: true,
-      },
-      {
-        id: 304,
-        name: "Kids' Sweater",
-        price: 24.99,
-        description: "Warm knit sweater for colder days",
-        category: "Kids",
-        imageUrl: "/images/kids-sweater.jpg",
-        inStock: false,
-      },
-      {
-        id: 305,
-        name: "Kids' Pajamas",
-        price: 22.99,
-        description: "Comfortable pajamas for a good night's sleep",
-        category: "Kids",
-        imageUrl: "/images/kids-pajamas.jpg",
-        inStock: true,
-      },
-      {
-        id: 306,
-        name: "Kids' Jacket",
-        price: 39.99,
-        description: "Lightweight jacket for cooler weather",
-        category: "Kids",
-        imageUrl: "/images/kids-jacket.jpg",
-        inStock: true,
-      },
-    ];
-
-    setProducts(kidsProducts);
-    setIsLoading(false);
+    try {
+      // Fetch all products from the service
+      const allProducts = await fetchProductTypes();
+      
+      // Filter for kids' products (category_id: 3)
+      const kidsProducts = allProducts.filter((product: ProductType) => product.category_id === 3);
+      
+      setProducts(kidsProducts);
+    } catch (error) {
+      console.error("Error fetching kids' products:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleDeleteProduct = (id: number) => {

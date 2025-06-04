@@ -1,30 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Product } from "../../types";
+import { ProductType } from "../../types";
 import Button from "../ui/Button";
+import { useCart } from "../../context/CartContext";
 import "./ProductCard.css";
 
 interface ProductCardProps {
-  product: Product;
-  onAddToCart: (productId: number) => void;
+  product: ProductType;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const { addItem } = useCart();
+
   const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation when clicking the button
-    onAddToCart(product.id);
+    e.preventDefault(); /*----- Prevent navigation when clicking the button -----*/
+    /*----- Assume all products in the grid are in stock for now -----*/
+    addItem(product);
   };
   return (
     <div className="product-card">
       <Link to={`/products/${product.id}`} className="product-link">
         <div className="product-image-container">
-          {!product.inStock && (
-            <div className="out-of-stock-badge">Out of Stock</div>
-          )}
-          {product.imageUrl ? (
+          {product.img_url ? (
             <img
-              src={product.imageUrl}
-              alt={product.name}
+              src={product.img_url}
+              alt={product.product_name}
               className="product-image"
             />
           ) : (
@@ -34,15 +34,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
       </Link>
 
       <div className="product-info">
-        <h3 className="product-title">{product.name}</h3>
+        <h3 className="product-title">{product.product_name}</h3>
         <div className="product-price">${product.price.toFixed(2)}</div>
         <Button
           onClick={handleAddToCart}
           className="product-add-button"
-          disabled={!product.inStock}
-          variant={product.inStock ? "primary" : "outline"}
+          variant="primary"
         >
-          {product.inStock ? "Add to Cart" : "Out of Stock"}
+          Add to Cart
         </Button>
       </div>
     </div>

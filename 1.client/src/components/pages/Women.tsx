@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Product } from "../../types";
+import React, { useState, useEffect } from "react";
+import { ProductType } from "../../types";
 import ProductGrid from "../product/ProductGrid";
 import "./Women.css";
-import { CartContext } from "../../App";
 import { jwtDecode } from "jwt-decode";
+import { fetchProductTypes } from "../../services/productTypeService";
 
 const Women: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -30,67 +30,21 @@ const Women: React.FC = () => {
 
   const fetchWomenProducts = async () => {
     setIsLoading(true);
-    // In a real app, this would be an API call
-    // For now, we'll use sample data
-    const womenProducts: Product[] = [
-      {
-        id: 101,
-        name: "Women's Casual Dress",
-        price: 59.99,
-        description: "Comfortable casual dress for everyday wear",
-        category: "Women",
-        imageUrl: "/images/womens-dress.jpg",
-        inStock: true,
-      },
-      {
-        id: 102,
-        name: "Women's Blouse",
-        price: 39.99,
-        description: "Elegant blouse for formal occasions",
-        category: "Women",
-        imageUrl: "/images/womens-blouse.jpg",
-        inStock: true,
-      },
-      {
-        id: 103,
-        name: "Women's Jeans",
-        price: 49.99,
-        description: "Classic fit jeans with stretch comfort",
-        category: "Women",
-        imageUrl: "/images/womens-jeans.jpg",
-        inStock: true,
-      },
-      {
-        id: 104,
-        name: "Women's Sweater",
-        price: 45.99,
-        description: "Warm knit sweater for colder days",
-        category: "Women",
-        imageUrl: "/images/womens-sweater.jpg",
-        inStock: false,
-      },
-      {
-        id: 105,
-        name: "Women's T-Shirt",
-        price: 24.99,
-        description: "Soft cotton t-shirt with modern design",
-        category: "Women",
-        imageUrl: "/images/womens-tshirt.jpg",
-        inStock: true,
-      },
-      {
-        id: 106,
-        name: "Women's Skirt",
-        price: 34.99,
-        description: "Stylish skirt for any occasion",
-        category: "Women",
-        imageUrl: "/images/womens-skirt.jpg",
-        inStock: true,
-      },
-    ];
+    try {
+      // Fetch all products from the service
+      const allProducts = await fetchProductTypes();
 
-    setProducts(womenProducts);
-    setIsLoading(false);
+      // Filter for women's products (category_id: 2)
+      const womenProducts = allProducts.filter(
+        (product: ProductType) => product.category_id === 2
+      );
+
+      setProducts(womenProducts);
+    } catch (error) {
+      console.error("Error fetching women's products:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleDeleteProduct = (id: number) => {

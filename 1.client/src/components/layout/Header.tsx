@@ -1,12 +1,12 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../App";
+import { useCart } from "../../context/CartContext";
 import "./header.css";
 import { logo } from "../../assets/images";
 import { FaShoppingCart, FaUser, FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
-  const { getCartTotal } = useContext(CartContext);
+  const { cart } = useCart();
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -94,11 +94,14 @@ const Header = () => {
               <div className="nav-icons">
                 <Link
                   to="/cart"
-                  className="icon-link"
+                  className="icon-link cart-icon-container"
                   aria-label="Shopping Cart"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <FaShoppingCart className="nav-icon" />
+                  {cart.totalItems > 0 && (
+                    <span className="cart-count">{cart.totalItems}</span>
+                  )}
                 </Link>
                 <Link
                   to="/login"

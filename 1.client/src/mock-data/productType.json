@@ -241,5 +241,161 @@
     "price": 100.99,
     "category_id": 5,
     "subcategory_id": 8
+  },
+  {
+    "id": 28,
+    "product_name": "Mens Winter Jacket",
+    "img_url": "img",
+    "product_details": "A warm and stylish winter jacket for cold days",
+    "price": 129.99,
+    "category_id": 1,
+    "subcategory_id": 1,
+    "list_type": "featured"
+  },
+  {
+    "id": 29,
+    "product_name": "Mens Hoodie",
+    "img_url": "img",
+    "product_details": "Comfortable cotton hoodie with front pocket",
+    "price": 49.99,
+    "category_id": 1,
+    "subcategory_id": 1,
+    "list_type": "new-arrival"
+  },
+  {
+    "id": 30,
+    "product_name": "Womans Blouse",
+    "img_url": "img",
+    "product_details": "Elegant silk blouse for formal occasions",
+    "price": 59.99,
+    "category_id": 2,
+    "subcategory_id": 1,
+    "list_type": "featured"
+  },
+  {
+    "id": 31,
+    "product_name": "Womans Cardigan",
+    "img_url": "img",
+    "product_details": "Soft knitted cardigan perfect for layering",
+    "price": 45.99,
+    "category_id": 2,
+    "subcategory_id": 1,
+    "list_type": "new-arrival"
+  },
+  {
+    "id": 32,
+    "product_name": "Children Raincoat",
+    "img_url": "img",
+    "product_details": "Waterproof raincoat with fun animal pattern",
+    "price": 35.99,
+    "category_id": 3,
+    "subcategory_id": 1,
+    "list_type": "featured"
+  },
+  {
+    "id": 33,
+    "product_name": "Children Pajamas",
+    "img_url": "img",
+    "product_details": "Soft and cozy pajamas for a good night's sleep",
+    "price": 29.99,
+    "category_id": 3,
+    "subcategory_id": 1,
+    "list_type": "new-arrival"
+  },
+  {
+    "id": 34,
+    "product_name": "Men's Running Shoes",
+    "img_url": "img",
+    "product_details": "Comfortable running shoes with cushioned soles",
+    "price": 89.99,
+    "category_id": 5,
+    "subcategory_id": 7,
+    "gender": "Men",
+    "size": "42",
+    "color": "Black"
+  },
+  {
+    "id": 35,
+    "product_name": "Women's Casual Sneakers",
+    "img_url": "img",
+    "product_details": "Stylish casual sneakers for everyday wear",
+    "price": 69.99,
+    "category_id": 5,
+    "subcategory_id": 7,
+    "gender": "Women",
+    "size": "38",
+    "color": "White"
+  },
+  {
+    "id": 36,
+    "product_name": "Kids' Sport Shoes",
+    "img_url": "img",
+    "product_details": "Durable sport shoes for active kids",
+    "price": 49.99,
+    "category_id": 5,
+    "subcategory_id": 7,
+    "gender": "Kids",
+    "size": "34",
+    "color": "Blue"
+  },
+  {
+    "id": 37,
+    "product_name": "Men's Leather Boots",
+    "img_url": "img",
+    "product_details": "Classic leather boots for all occasions",
+    "price": 129.99,
+    "category_id": 5,
+    "subcategory_id": 9,
+    "gender": "Men",
+    "size": "43",
+    "color": "Brown"
+  },
+  {
+    "id": 38,
+    "product_name": "Women's High Heels",
+    "img_url": "img",
+    "product_details": "Elegant high heels for formal events",
+    "price": 99.99,
+    "category_id": 5,
+    "subcategory_id": 8,
+    "gender": "Women",
+    "size": "39",
+    "color": "Red"
+  },
+  {
+    "id": 39,
+    "product_name": "Kids' Light-up Sneakers",
+    "img_url": "img",
+    "product_details": "Fun sneakers with light-up soles",
+    "price": 59.99,
+    "category_id": 5,
+    "subcategory_id": 7,
+    "gender": "Kids",
+    "size": "32",
+    "color": "Multi"
+  },
+  {
+    "id": 40,
+    "product_name": "Women's Winter Boots",
+    "img_url": "img",
+    "product_details": "Insulated winter boots with waterproof exterior",
+    "price": 109.99,
+    "category_id": 5,
+    "subcategory_id": 9,
+    "gender": "Women",
+    "size": "38",
+    "color": "Black"
+  },
+  {
+    "id": 41,
+    "product_name": "Kids' Rain Boots",
+    "img_url": "img",
+    "product_details": "Colorful waterproof boots for rainy days",
+    "price": 44.99,
+    "category_id": 5,
+    "subcategory_id": 9,
+    "gender": "Kids",
+    "size": "33",
+    "color": "Yellow"
   }
 ]

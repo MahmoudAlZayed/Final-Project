@@ -1,0 +1,76 @@
+.cart-summary {
+  @apply bg-white p-4 sm:p-6 border border-gray-200 rounded-lg shadow-sm;
+  width: 100%;
+}
+
+.summary-title {
+  @apply text-lg sm:text-xl font-medium mb-4 pb-2 border-b border-gray-200;
+}
+
+.summary-items {
+  @apply mb-4 pb-2 border-b border-gray-100;
+}
+
+.summary-item-count {
+  @apply text-sm text-gray-600;
+}
+
+.summary-line {
+  @apply flex justify-between py-2 text-sm;
+}
+
+.summary-label {
+  @apply text-gray-600;
+}
+
+.summary-value {
+  @apply font-medium;
+}
+
+.summary-total {
+  @apply flex justify-between py-3 mt-2 border-t border-gray-200 font-medium;
+}
+
+.total-label {
+  @apply text-base;
+}
+
+.total-value {
+  @apply text-base;
+}
+
+.summary-actions {
+  @apply flex flex-col gap-2 mt-4;
+}
+
+.checkout-button {
+  @apply w-full py-2 px-4 bg-black text-white rounded hover:bg-gray-800 transition-colors;
+}
+
+.checkout-button:disabled {
+  @apply bg-gray-300 cursor-not-allowed;
+}
+
+.continue-shopping-button {
+  @apply w-full py-2 px-4 bg-white text-black border border-gray-300 rounded hover:bg-gray-50 transition-colors text-sm;
+}
+
+/* Responsive adjustments for small screens */
+@media (min-width: 322px) and (max-width: 639px) {
+  .cart-summary {
+    @apply p-3;
+  }
+
+  .summary-title {
+    @apply text-base mb-3;
+  }
+
+  .summary-actions {
+    @apply gap-1;
+  }
+
+  .checkout-button,
+  .continue-shopping-button {
+    @apply py-1.5 text-sm;
+  }
+}

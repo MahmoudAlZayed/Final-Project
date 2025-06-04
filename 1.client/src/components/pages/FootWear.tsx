@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Product } from "../../types";
+import { ProductType } from "../../types";
 import ProductGrid from "../product/ProductGrid";
 import "./Footwear.css";
 import { jwtDecode } from "jwt-decode";
+import { fetchProductTypes } from "../../services/productTypeService";
 
 const Footwear: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -41,176 +42,69 @@ const Footwear: React.FC = () => {
 
   const fetchFootwearProducts = async () => {
     setIsLoading(true);
-    /*----- In a real app, this would be an API call -----*/
-    /*----- For now, we'll use sample data -----*/
-    const footwearProducts: Product[] = [
-      {
-        id: 201,
-        name: "Men's Running Shoes",
-        price: 89.99,
-        description: "Comfortable running shoes with cushioned soles",
-        category: "Footwear",
-        gender: "Men",
-        size: "42",
-        color: "Black",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 202,
-        name: "Women's Casual Sneakers",
-        price: 69.99,
-        description: "Stylish casual sneakers for everyday wear",
-        category: "Footwear",
-        gender: "Women",
-        size: "38",
-        color: "White",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 203,
-        name: "Kids' Sport Shoes",
-        price: 49.99,
-        description: "Durable sport shoes for active kids",
-        category: "Footwear",
-        gender: "Kids",
-        size: "34",
-        color: "Blue",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 204,
-        name: "Men's Leather Boots",
-        price: 129.99,
-        description: "Classic leather boots for all occasions",
-        category: "Footwear",
-        gender: "Men",
-        size: "43",
-        color: "Brown",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 205,
-        name: "Women's High Heels",
-        price: 99.99,
-        description: "Elegant high heels for formal events",
-        category: "Footwear",
-        gender: "Women",
-        size: "39",
-        color: "Red",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 206,
-        name: "Kids' Light-up Sneakers",
-        price: 59.99,
-        description: "Fun sneakers with light-up soles",
-        category: "Footwear",
-        gender: "Kids",
-        size: "32",
-        color: "Multi",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 207,
-        name: "Men's Casual Loafers",
-        price: 79.99,
-        description: "Comfortable loafers for casual occasions",
-        category: "Footwear",
-        gender: "Men",
-        size: "44",
-        color: "Navy",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 208,
-        name: "Women's Running Shoes",
-        price: 89.99,
-        description: "Performance running shoes with breathable mesh",
-        category: "Footwear",
-        gender: "Women",
-        size: "37",
-        color: "Pink",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 209,
-        name: "Kids' Sandals",
-        price: 39.99,
-        description: "Comfortable sandals for summer days",
-        category: "Footwear",
-        gender: "Kids",
-        size: "30",
-        color: "Green",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 210,
-        name: "Men's Hiking Boots",
-        price: 119.99,
-        description: "Durable hiking boots for outdoor adventures",
-        category: "Footwear",
-        gender: "Men",
-        size: "45",
-        color: "Grey",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 211,
-        name: "Women's Winter Boots",
-        price: 109.99,
-        description: "Insulated winter boots with waterproof exterior",
-        category: "Footwear",
-        gender: "Women",
-        size: "38",
-        color: "Black",
-        imageUrl: "",
-        inStock: true,
-      },
-      {
-        id: 212,
-        name: "Kids' Rain Boots",
-        price: 44.99,
-        description: "Colorful waterproof boots for rainy days",
-        category: "Footwear",
-        gender: "Kids",
-        size: "33",
-        color: "Yellow",
-        imageUrl: "",
-        inStock: true,
-      },
-    ];
+    try {
+      // Fetch all products from the service
+      const allProducts = await fetchProductTypes();
 
-    setProducts(footwearProducts);
-    setFilteredProducts(footwearProducts);
-    setIsLoading(false);
+      // Filter for footwear products (category_id: 5)
+      const footwearProducts = allProducts.filter(
+        (product: ProductType) => product.category_id === 5
+      );
+
+      setProducts(footwearProducts);
+      setFilteredProducts(footwearProducts);
+    } catch (error) {
+      console.error("Error fetching footwear products:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const applyFilters = () => {
     let filtered = [...products];
 
-    /*----- Apply gender filter -----*/
+    /*----- Apply gender filter (using subcategory_id as a proxy) -----*/
     if (activeGender !== "all") {
-      filtered = filtered.filter((product) => product.gender === activeGender);
+      /*----- Map gender to subcategory_id ranges -----*/
+      /*----- For example: Men: 1-3, Women: 4-6, Kids: 7-9 -----*/
+      /*----- Adjust these ranges based on your actual subcategory_id assignments -----*/
+      if (activeGender === "Men") {
+        filtered = filtered.filter(
+          (product: ProductType) =>
+            product.subcategory_id >= 1 && product.subcategory_id <= 3
+        );
+      } else if (activeGender === "Women") {
+        filtered = filtered.filter(
+          (product: ProductType) =>
+            product.subcategory_id >= 4 && product.subcategory_id <= 6
+        );
+      } else if (activeGender === "Kids") {
+        filtered = filtered.filter(
+          (product: ProductType) =>
+            product.subcategory_id >= 7 && product.subcategory_id <= 9
+        );
+      }
     }
 
-    /*----- Apply size filter -----*/
+    /*----- Apply size filter (using product_details to search for size) -----*/
     if (activeSize !== "all") {
-      filtered = filtered.filter((product) => product.size === activeSize);
+      filtered = filtered.filter(
+        (product: ProductType) =>
+          product.product_details
+            .toLowerCase()
+            .includes(`size ${activeSize}`) ||
+          product.product_details.toLowerCase().includes(`size: ${activeSize}`)
+      );
     }
 
-    /*----- Apply color filter -----*/
+    /*----- Apply color filter (using product_details or product_name to search for color) -----*/
     if (activeColor !== "all") {
-      filtered = filtered.filter((product) => product.color === activeColor);
+      const colorLower = activeColor.toLowerCase();
+      filtered = filtered.filter(
+        (product: ProductType) =>
+          product.product_details.toLowerCase().includes(colorLower) ||
+          product.product_name.toLowerCase().includes(colorLower)
+      );
     }
 
     setFilteredProducts(filtered);
@@ -243,9 +137,9 @@ const Footwear: React.FC = () => {
     /*----- In a real app, this would upload the image to a server -----*/
     if (event.target.files && event.target.files[0]) {
       const updatedImage = event.target.files[0];
-      const imageUrl = URL.createObjectURL(updatedImage);
+      const img_url = URL.createObjectURL(updatedImage);
       setProducts((prev) =>
-        prev.map((p) => (p.id === id ? { ...p, imageUrl } : p))
+        prev.map((p) => (p.id === id ? { ...p, img_url } : p))
       );
     }
   };
@@ -508,11 +402,16 @@ const Footwear: React.FC = () => {
         </div>
       </div>
 
-      {/* Products section */}
-      <div className="products-section">
-        <h2 className="section-title">Footwear Collection</h2>
+      {/* Products grid section with proper centering and spacing */}
+      <div className="products-container mx-auto px-4 py-8">
         {isLoading ? (
-          <div className="loading-indicator">Loading products...</div>
+          <div className="loading-indicator text-center py-8">
+            Loading footwear...
+          </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="no-products text-center py-8">
+            No footwear found matching your filters.
+          </div>
         ) : (
           <ProductGrid
             products={filteredProducts}
