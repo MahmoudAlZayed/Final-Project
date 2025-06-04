@@ -20,7 +20,7 @@ app.use("/api/colors", colors_routes);
 app.use('/api/sizes', sizes_routes);
 app.use("/api/orders", orders_routes);
 app.use("/api/productslist", productlist_routes);
-app.use("/api/costumers", costumers_routes);
+app.use("/api/customers", costumers_routes); 
 app.use("/api/subcategory", subcategory_routes);
 
 

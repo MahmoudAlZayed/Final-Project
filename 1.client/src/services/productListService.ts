@@ -3,6 +3,8 @@ import { USE_MOCK } from "../mock-data/config";
 import productListMockData from "../mock-data/productList.json";
 import { ProductListType } from "../types";
 
+//http://localhost:3000/api/productslist
+
 const LOCAL_STORAGE_KEY = "productList";
 let productList: ProductListType[] = [...productListMockData];
 
@@ -24,7 +26,7 @@ loadproductList();
 export const fetchProductList = async () => {
   if (USE_MOCK) return productList;
   try {
-    const res = await api.get("/product-list");
+    const res = await api.get("/productslist");
     return res.data;
   } catch (error) {
     console.error("Error fetching product list:", error);
@@ -39,7 +41,7 @@ export const fetchProductListById = async (id: number) => {
     return item;
   }
   try {
-    const res = await api.get(`/product-list/${id}`);
+    const res = await api.get(`/productslist/${id}`);
     return res.data;
   } catch (error) {
     console.error("Error fetching product list by ID:", error);
@@ -62,7 +64,7 @@ export const fetchCreateProductList = async (data: any) => {
     return newItem;
   }
   try {
-    const res = await api.post("/product-list", data);
+    const res = await api.post("/productslist", data);
     return res.data;
   } catch (error) {
     console.error("Error creating product list item:", error);
@@ -81,7 +83,7 @@ export const fetchUpdateProductList = async (id: number, data: any) => {
     return productList[index];
   }
   try {
-    const res = await api.put(`/product-list/${id}`, data);
+    const res = await api.put(`/productslist/${id}`, data);
     return res.data;
   } catch (error) {
     console.error("Error updating product list item:", error);
@@ -98,7 +100,7 @@ export const fetchDeleteProductList = async (id: number) => {
     return { message: "Product list item deleted (mock)" };
   }
   try {
-    const res = await api.delete(`/product-list/${id}`);
+    const res = await api.delete(`/productslist/${id}`);
     return res.data;
   } catch (error) {
     console.error("Error deleting product list item:", error);

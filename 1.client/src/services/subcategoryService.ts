@@ -3,6 +3,8 @@ import { USE_MOCK } from "../mock-data/config";
 import subcategoryMockData from "../mock-data/subcategory.json";
 import { SubCategoryType } from "../types";
 
+//http://localhost:3000/api/subcategory
+
 const LOCAL_STORAGE_KEY = "subcategory";
 let subcategory: SubCategoryType[] = [...subcategoryMockData];
 

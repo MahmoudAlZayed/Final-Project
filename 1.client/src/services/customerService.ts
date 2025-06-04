@@ -3,6 +3,8 @@ import { USE_MOCK } from "../mock-data/config";
 import customerMockData from "../mock-data/customer.json";
 import { CustomerType } from "../types";
 
+// http://localhost:3000/api/customers
+
 const LOCAL_STORAGE_KEY = "customer";
 let customer: CustomerType[] = [...customerMockData];
 
@@ -24,7 +26,7 @@ loadCustomer();
 export const fetchCustomer = async () => {
   if (USE_MOCK) return customer;
   try {
-    const res = await api.get("/customer");
+    const res = await api.get("/customers");
     return res.data;
   } catch (error) {
     console.error("Error fetching customer:", error);
@@ -38,7 +40,7 @@ export const fetchCustomerById = async (id: number) => {
     return item;
   }
   try {
-    const res = await api.get(`/customer/${id}`);
+    const res = await api.get(`/customers/${id}`);
     return res.data;
   } catch (error) {
     console.error("Error fetching customer by ID:", error);
@@ -58,7 +60,7 @@ export const fetchCreateCustomer = async (data: any) => {
     return newItem;
   }
   try {
-    const res = await api.post("/customer", data);
+    const res = await api.post("/customers", data);
     return res.data;
   } catch (error) {
     console.error("Error creating customer:", error);
@@ -76,7 +78,7 @@ export const fetchUpdateCustomer = async (id: number, data: any) => {
     return customer[index];
   }
   try {
-    const res = await api.put(`/customer/${id}`, data);
+    const res = await api.put(`/customers/${id}`, data);
     return res.data;
   } catch (error) {
     console.error("Error updating customer:", error);
@@ -94,7 +96,7 @@ export const fetchDeleteCustomer = async (id: number) => {
     return deletedItem;
   }
   try {
-    const res = await api.delete(`/customer/${id}`);
+    const res = await api.delete(`/customers/${id}`);
     return res.data;
   } catch (error) {
     console.error("Error deleting customer:", error);
