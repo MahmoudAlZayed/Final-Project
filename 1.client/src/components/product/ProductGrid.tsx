@@ -42,7 +42,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           <div className="product-info">
             <h3 className="product-title">{product.product_name}</h3>
             <p className="product-description">{product.product_details}</p>
-            <p className="product-price">${product.price.toFixed(2)}</p>
+            <p className="product-price">${Number(product.price).toFixed(2)}</p>
           </div>
 
           {/* Add to cart*/}

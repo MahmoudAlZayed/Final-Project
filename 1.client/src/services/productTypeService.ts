@@ -2,10 +2,6 @@ import api from "./api";
 import { USE_MOCK } from "../mock-data/config";
 import productTypesMockData from "../mock-data/productType.json";
 
-// saveing data in localstorage becaouse mock data is not persistent
-// http://localhost:3000/api/productstype
-
-
 const LOCAL_STORAGE_KEY = "ProductTypes";
 let productTypes = [...productTypesMockData];
 
@@ -64,6 +60,7 @@ export const fetchCreateProductType = async (data: any) => {
     return newProduct;
   }
   try {
+    console.log("Creating product type with data:", data);
     const res = await api.post("/productstype", data);
     return res.data;
   } catch (error) {
