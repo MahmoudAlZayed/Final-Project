@@ -7,7 +7,7 @@
 }
 
 .cart-title {
-  @apply text-2xl sm:text-3xl font-medium mb-6 sm:mb-8 text-center;
+  @apply text-2xl sm:text-3xl font-medium mb-6 sm:mb-8 text-center text-black;
 }
 
 .empty-cart {

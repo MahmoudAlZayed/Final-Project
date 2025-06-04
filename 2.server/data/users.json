@@ -5,5 +5,12 @@
     "email": "petergustafsson910@gmail.com",
     "password": "$2b$10$E8NHYSCC/W8jf90A2k/BCe.nAohbaR2TTbVWuoE7VEEQo.FxKYr0u",
     "role": "user"
+  },
+  {
+    "name": "Peter",
+    "lastname": "Gustafsson",
+    "email": "peter.gustafsson85@hotmail.com",
+    "password": "$2b$10$JOvM/jNvljnobTKOgjzDt.4iMYb/219l1Ue5v4bggQYvAVZ33V1.S",
+    "role": "user"
   }
 ]

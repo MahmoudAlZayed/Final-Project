@@ -1,5 +1,5 @@
 .cart-summary {
-  @apply bg-white p-4 sm:p-6 border border-gray-200 rounded-lg shadow-sm;
+  @apply bg-white p-4 sm:p-6 border border-gray-200 rounded-lg shadow-sm text-black;
   width: 100%;
 }
 

@@ -5,10 +5,15 @@
 
 .cart-item-image {
   @apply w-20 h-20 min-w-[80px] flex-shrink-0;
+  position: relative;
+  overflow: hidden;
 }
 
 .cart-product-image {
   @apply w-full h-full object-cover;
+  color: #000000; /* Ensure alt text is black if image fails to load */
+  font-size: 0.75rem; /* Small text size for alt text */
+  text-align: center;
 }
 
 .cart-item-details {
@@ -16,7 +21,7 @@
 }
 
 .cart-item-name {
-  @apply text-sm sm:text-base font-medium mb-1;
+  @apply text-sm sm:text-base font-medium mb-1 text-black;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -25,7 +30,7 @@
 }
 
 .cart-item-price {
-  @apply text-sm text-gray-600;
+  @apply text-sm text-black;
 }
 
 .cart-item-actions {
@@ -37,7 +42,7 @@
 }
 
 .quantity-label {
-  @apply text-sm text-gray-600;
+  @apply text-sm text-black;
 }
 
 .quantity-select {
@@ -50,16 +55,16 @@
 }
 
 .cart-item-subtotal {
-  @apply flex flex-col sm:items-end text-right mt-2 sm:mt-0;
+  @apply flex flex-col sm:items-end text-right mt-2 sm:mt-0 text-black;
   min-width: 80px;
 }
 
 .subtotal-label {
-  @apply text-xs text-gray-500;
+  @apply text-xs text-black;
 }
 
 .subtotal-amount {
-  @apply text-sm font-medium;
+  @apply text-sm font-medium text-black;
 }
 
 /* Responsive adjustments for small screens */
