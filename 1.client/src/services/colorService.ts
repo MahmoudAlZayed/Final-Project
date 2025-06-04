@@ -27,6 +27,7 @@ export const fetchColors = async () => {
   if (USE_MOCK) return color;
   try {
     const res = await api.get("/colors");
+    console.log(res)
     return res.data;
   } catch (error) {
     console.error("Error fetching colors:", error);

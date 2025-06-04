@@ -25,7 +25,9 @@ const Home: React.FC = () => {
   const [newProductPrice, setNewProductPrice] = useState<string>("");
   const [newProductDescription, setNewProductDescription] = useState("");
   const [newProductImage, setNewProductImage] = useState<File | null>(null);
-  const [newProductCategory, setNewProductCategory] = useState<string>("");
+  const [newProductCategory, setNewProductCategory] = useState<number | null>(
+    null
+  );
   const [selectedProductList, setSelectedProductList] =
     useState("Featured Products");
   const [isNewArrival, setIsNewArrival] = useState(false);
@@ -35,9 +37,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const productData = await fetchProductTypes();
-      console.log("Fetched products:", productData);
-
+      const productData: ProductType[] = await fetchProductTypes();
       setProducts(productData);
 
       /*----- Get all products with list_type "new-arrival" or if we have fewer than 4, add some featured products to make it 4 -----*/
@@ -73,7 +73,6 @@ const Home: React.FC = () => {
       );
 
       const categoryData = await fetchCategory();
-      console.log("Fetched categories:", categoryData);
       setCategories(categoryData);
     };
 
@@ -113,16 +112,15 @@ const Home: React.FC = () => {
       img_url: newProductImage ? newProductImage.name : "placeholder.jpg",
       product_details: newProductDescription,
       price: parseFloat(newProductPrice),
-      category_id: parseInt(newProductCategory),
-      subcategory_id: 1,
+      category_id: newProductCategory!,
+      subcategory_id: newProductCategory!,
       list_type:
         selectedProductList === "New Arrivals" ? "new-arrival" : "featured",
     };
+    const { list_type, ...productToSend } = newProduct;
 
     try {
-      const createdProduct = await fetchCreateProductType(newProduct);
-
-      // Uppdatera produktlistorna lokalt efter skapandet
+      const createdProduct = await fetchCreateProductType(productToSend);
       if (createdProduct.list_type === "new-arrival") {
         setNewArrivals((prev) => [...prev, createdProduct]);
       } else {
@@ -132,7 +130,7 @@ const Home: React.FC = () => {
       setNewProductName("");
       setNewProductPrice("");
       setNewProductDescription("");
-      setNewProductCategory("Electronics");
+      setNewProductCategory(null);
       setNewProductImage(null);
       setIsNewArrival(false);
       setSelectedProductList("Featured Products");
@@ -223,12 +221,17 @@ const Home: React.FC = () => {
             <div className="second-column">
               <select
                 className="select-category"
-                value={newProductCategory}
-                onChange={(e) => setNewProductCategory(e.target.value)}
+                value={newProductCategory ?? ""}
+                onChange={(e) => {
+                  const selected = e.target.value;
+                  setNewProductCategory(
+                    selected === "" ? null : Number(selected)
+                  );
+                }}
               >
                 <option value="">-- Select Category --</option>
                 {categories.map((cat) => (
-                  <option key={cat.id} value={cat.category}>
+                  <option key={cat.id} value={cat.id}>
                     {cat.category}
                   </option>
                 ))}
