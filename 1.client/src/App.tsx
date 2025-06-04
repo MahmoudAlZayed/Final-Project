@@ -17,7 +17,7 @@ import OrderConfirmation from "./components/pages/OrderConfirmation";
 import { CartProvider } from "./context/CartContext";
 import "./App.css";
 
-// Placeholder component for pages that might not exist yet
+/*----- Placeholder component for pages that might not exist yet -----*/
 const ProductList = () => (
   <div className="page-container">Product List Page</div>
 );

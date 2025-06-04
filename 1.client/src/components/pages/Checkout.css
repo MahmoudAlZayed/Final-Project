@@ -7,7 +7,7 @@
 }
 
 .checkout-title {
-  @apply text-2xl sm:text-3xl font-medium mb-6 sm:mb-8 text-center;
+  @apply text-2xl sm:text-3xl font-medium mb-6 sm:mb-8 text-center text-black;
 }
 
 .checkout-content {
@@ -27,7 +27,7 @@
 }
 
 .section-title {
-  @apply text-lg sm:text-xl font-medium mb-4;
+  @apply text-lg sm:text-xl font-medium mb-4 text-black;
 }
 
 .form-row {
@@ -55,15 +55,15 @@
 }
 
 .summary-item {
-  @apply flex justify-between text-sm;
+  @apply flex justify-between text-sm text-black;
 }
 
 .item-name {
-  @apply text-gray-600;
+  @apply text-gray-700;
 }
 
 .item-price {
-  @apply font-medium;
+  @apply font-medium text-black;
 }
 
 .summary-totals {
@@ -71,11 +71,11 @@
 }
 
 .summary-line {
-  @apply flex justify-between text-sm;
+  @apply flex justify-between text-sm text-black;
 }
 
 .summary-total {
-  @apply flex justify-between font-medium text-base pt-2 mt-2 border-t border-gray-200;
+  @apply flex justify-between font-medium text-base pt-2 mt-2 border-t border-gray-200 text-black;
 }
 
 .checkout-actions {
@@ -111,6 +111,7 @@
 }
 
 /*----- Responsive adjustments for small screens -----*/
+
 @media (min-width: 322px) and (max-width: 639px) {
   .checkout-page {
     @apply py-4;
