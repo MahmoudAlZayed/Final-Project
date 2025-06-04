@@ -3,6 +3,8 @@ import { USE_MOCK } from "../mock-data/config";
 import category from "../mock-data/category.json";
 import { CategoryType } from "../types";
 
+//http://localhost:3000/api/category
+
 let mockCategorys: CategoryType[] = [...category];
 
 export const fetchCategory = async () => {

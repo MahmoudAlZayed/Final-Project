@@ -3,6 +3,8 @@ import { USE_MOCK } from "../mock-data/config";
 import colorMockData from "../mock-data/colors.json";
 import { ColorType } from "../types";
 
+//http://localhost:3000/api/colors
+
 const LOCAL_STORAGE_KEY = "color";
 let color: ColorType[] = [...colorMockData];
 

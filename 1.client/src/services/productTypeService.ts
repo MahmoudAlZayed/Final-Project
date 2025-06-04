@@ -3,6 +3,8 @@ import { USE_MOCK } from "../mock-data/config";
 import productTypesMockData from "../mock-data/productType.json";
 
 // saveing data in localstorage becaouse mock data is not persistent
+// http://localhost:3000/api/productstype
+
 
 const LOCAL_STORAGE_KEY = "ProductTypes";
 let productTypes = [...productTypesMockData];
@@ -25,7 +27,7 @@ loadProductTypes();
 export const fetchProductTypes = async () => {
   if (USE_MOCK) return productTypes;
   try {
-    const res = await api.get("/product-type");
+    const res = await api.get("/productstype");
     return res.data;
   } catch (error) {
     console.error("Error fetching product types:", error);
@@ -40,7 +42,7 @@ export const fetchProductTypeById = async (id: number) => {
     return productType;
   }
   try {
-    const res = await api.get(`/product-type/${id}`);
+    const res = await api.get(`/productstype/${id}`);
     return res.data;
   } catch (error) {
     console.error("Error fetching product type by ID:", error);
@@ -62,7 +64,7 @@ export const fetchCreateProductType = async (data: any) => {
     return newProduct;
   }
   try {
-    const res = await api.post("/product-type", data);
+    const res = await api.post("/productstype", data);
     return res.data;
   } catch (error) {
     console.error("Error creating product type:", error);
@@ -80,7 +82,7 @@ export const fetchUpdateProductType = async (id: number, data: any) => {
     return productTypes[index];
   }
   try {
-    const res = await api.put(`/product-type/${id}`, data);
+    const res = await api.put(`/productstype/${id}`, data);
     return res.data;
   } catch (error) {
     console.error("Error updating product type:", error);
@@ -96,7 +98,7 @@ export const fetchDeleteProductType = async (id: number) => {
     return { message: "Product type deleted (mock)" };
   }
   try {
-    const res = await api.delete(`/product-type/${id}`);
+    const res = await api.delete(`/productstype/${id}`);
     return res.data;
   } catch (error) {
     console.error("Error deleting product type:", error);
