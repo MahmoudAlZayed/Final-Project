@@ -5,5 +5,12 @@
     "email": "ida.johansson90@hotmail.com",
     "password": "$2b$10$9DtffWR0c2jH9WMnsGV3s.4SPg4vwzJYh9SiBjrZoh.K5ZUAd8WfG",
     "role": "user"
+  },
+  {
+    "name": "Tommy",
+    "lastname": "Batong",
+    "email": "Tom.Lindblad@gmail.com",
+    "password": "$2b$10$4LfKnU5FAi5y.GcJ/MBdouxTM3pfd.kEMUkKFHeNAsWYfvSjOAeLC",
+    "role": "user"
   }
 ]
