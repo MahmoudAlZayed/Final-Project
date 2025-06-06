@@ -28,15 +28,55 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     return <p className="no-products">No products available</p>;
   }
 
+  const getProductImage = (product: ProductType): string => {
+    const categoryMap: Record<number, string> = {
+      1: "clothes",
+      2: "clothes",
+      3: "clothes",
+      4: "accessories",
+      5: "footwear",
+    };
+
+    const subcategoryMap: Record<number, string> = {
+      1: "tops",
+      2: "bottom",
+      3: "underware",
+      4: "glasses",
+      5: "jewlery",
+      6: "bags",
+      7: "sneakers",
+      8: "pumps",
+      9: "boots",
+      10: "skirt",
+    };
+
+    const categoryFolder = categoryMap[product.category_id] || "clothes";
+    const subcategoryFile = subcategoryMap[product.subcategory_id] || "default";
+
+    let genderSuffix = "";
+    if (product.category_id === 2) genderSuffix = "_women";
+    else if (product.category_id === 1) genderSuffix = "_men";
+    else if (product.category_id === 3) genderSuffix = "_kids";
+
+    const withSuffix = `/assets/products_img/${categoryFolder}/${subcategoryFile}${genderSuffix}.png`;
+    const withoutSuffix = `/assets/products_img/${categoryFolder}/${subcategoryFile}.png`;
+
+    return withSuffix;
+  };
+
   return (
     <div className="product-grid">
       {products.map((product) => (
         <div key={product.id} className="product-card">
           <div className="product-image-container">
             <img
-              src={product.img_url}
+              src={getProductImage(product)}
               alt={product.product_name}
               className="product-image"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  "/assets/products_img/default.png";
+              }}
             />
           </div>
           <div className="product-info">
